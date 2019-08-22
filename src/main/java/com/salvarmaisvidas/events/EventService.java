@@ -3,8 +3,6 @@ package com.salvarmaisvidas.events;
 import com.salvarmaisvidas.collaborators.Collaborator;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
 public interface EventService {
 
     /**
