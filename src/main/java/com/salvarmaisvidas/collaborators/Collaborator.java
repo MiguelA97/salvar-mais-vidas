@@ -9,7 +9,6 @@ public class Collaborator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
     private String email;
     private LocalDate birth_date;

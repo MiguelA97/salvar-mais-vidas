@@ -1,5 +1,8 @@
 package com.salvarmaisvidas.collaborators;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +17,8 @@ public class CollaboratorServiceImpl implements CollaboratorService {
     }
 
     @Override
-    public List<Collaborator> getAllCollaborators() {
-        return collaboratorRepository.findAll();
+    public Page<Collaborator> getAllCollaborators(int size, int page) {
+        return collaboratorRepository.findAll(PageRequest.of(page, size, Sort.by("name")));
     }
 
     @Override

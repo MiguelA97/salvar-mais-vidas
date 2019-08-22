@@ -1,5 +1,6 @@
 package com.salvarmaisvidas.collaborators;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public class CollaboratorController {
     }
 
     @GetMapping
-    List<Collaborator> getAllCollaborators(){
-        return collaboratorService.getAllCollaborators();
+    Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page){
+        return collaboratorService.getAllCollaborators(size, page);
     }
 
     @GetMapping("/{id}")
