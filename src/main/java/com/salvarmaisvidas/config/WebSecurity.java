@@ -31,7 +31,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().httpBasic();
+        http.csrf().disable()//.authorizeRequests()
+                //.antMatchers("/api/users/**")//.hasRole("ADMIN")
+                //.antMatchers("/api/collaborators/**").hasAnyRole("ADMIN", "MANAGER")
+                //.antMatchers("/api/collaboratorEvents/**").hasAnyRole("ADMIN", "MANAGER")
+                //.antMatchers("/api/events/**").hasAnyRole("ADMIN", "MANAGER")
+                //.antMatchers("/api/partners/**").hasAnyRole("ADMIN", "MANAGER")
+                //.anyRequest()
+                //.authenticated()
+                //.and()
+                .httpBasic();
     }
 
     @Bean
