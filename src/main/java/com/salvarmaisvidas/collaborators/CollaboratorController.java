@@ -14,7 +14,7 @@ public class CollaboratorController {
     }
 
     @GetMapping
-    Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page){
+    Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "0") int page){
         return collaboratorService.getAllCollaborators(size, page);
     }
 
