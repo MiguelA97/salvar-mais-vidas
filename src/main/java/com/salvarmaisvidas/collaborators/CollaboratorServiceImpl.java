@@ -28,7 +28,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
     @Override
     public Collaborator replaceCollaborator(Collaborator newCollaborator, int id) {
         return collaboratorRepository.findById(id).map(collaborator -> {
-            collaborator.setBirthday(newCollaborator.getBirthday());
+            collaborator.setBirthDate(newCollaborator.getBirthDate());
             collaborator.setCc(newCollaborator.getCc());
             collaborator.setJob(newCollaborator.getJob());
             collaborator.setTrainer(newCollaborator.isTrainer());

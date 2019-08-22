@@ -12,8 +12,8 @@ public class Collaborator {
 
     private String name;
     private String email;
-    private LocalDate birthday;
-    private int cc;
+    private LocalDate birth_date;
+    private String cc;
     private String address;
     private String postal_code;
     private String locality;
@@ -49,19 +49,19 @@ public class Collaborator {
         this.email = email;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
+    public LocalDate getBirthDate() {
+        return birth_date;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
+    public void setBirthDate(LocalDate birth_date) {
+        this.birth_date = birth_date;
     }
 
-    public int getCc() {
+    public String getCc() {
         return cc;
     }
 
-    public void setCc(int cc) {
+    public void setCc(String cc) {
         this.cc = cc;
     }
 
