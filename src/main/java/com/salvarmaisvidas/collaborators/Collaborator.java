@@ -1,19 +1,16 @@
-package com.salvarmaisvidas.colaborators;
+package com.salvarmaisvidas.collaborators;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@IdClass(ColaboratorId.class)
-public class Colaborator {
+public class Collaborator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Id
     private String name;
-
     private String email;
     private LocalDate birthday;
     private int cc;
@@ -25,7 +22,7 @@ public class Colaborator {
     private boolean trainer;
     private LocalDate registration_date;
 
-    public Colaborator(){
+    public Collaborator(){
     }
 
     public int getId() {
@@ -76,11 +73,11 @@ public class Colaborator {
         this.address = address;
     }
 
-    public String getPostal_code() {
+    public String getPostalCode() {
         return postal_code;
     }
 
-    public void setPostal_code(String postal_code) {
+    public void setPostalCode(String postal_code) {
         this.postal_code = postal_code;
     }
 
@@ -116,11 +113,11 @@ public class Colaborator {
         this.trainer = trainer;
     }
 
-    public LocalDate getRegistration_date() {
+    public LocalDate getRegistrationDate() {
         return registration_date;
     }
 
-    public void setRegistration_date(LocalDate registration_date) {
+    public void setRegistrationDate(LocalDate registration_date) {
         this.registration_date = registration_date;
     }
 }
