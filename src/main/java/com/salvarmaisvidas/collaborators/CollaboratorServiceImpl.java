@@ -1,7 +1,10 @@
 package com.salvarmaisvidas.collaborators;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class CollaboratorServiceImpl implements CollaboratorService {
 
     private final CollaboratorRepository collaboratorRepository;

@@ -26,7 +26,7 @@ public interface CollaboratorService {
     Collaborator newCollaborator(Collaborator newCollaborator);
 
     /**
-     * Replaces a collaborator if it exists, if not inserts the new owner
+     * Replaces a collaborator if it exists, if not inserts the new collaborator
      *
      * @return replaced collaborator
      */

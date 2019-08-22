@@ -1,4 +1,4 @@
 package com.salvarmaisvidas.partners;
 
-public class PrivatePartner {
+public class Partner {
 }
