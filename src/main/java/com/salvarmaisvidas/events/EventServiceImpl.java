@@ -1,5 +1,8 @@
 package com.salvarmaisvidas.events;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +17,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getAllEvents() {
-        return eventRepository.findAll();
+    public Page<Event> getAllEvents(int size, int page) {
+        return eventRepository.findAll(PageRequest.of(page, size, Sort.by("name")));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.salvarmaisvidas.events;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public class EventController {
     }
 
     @GetMapping
-    List<Event> getAllEvents(){
-        return eventService.getAllEvents();
+    Page<Event> getAllEvents(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page){
+        return eventService.getAllEvents(size, page);
     }
 
     @GetMapping("/{id}")

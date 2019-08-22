@@ -1,6 +1,7 @@
 package com.salvarmaisvidas.events;
 
 import com.salvarmaisvidas.collaborators.Collaborator;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface EventService {
      *
      * @return list of event
      */
-    List<Event> getAllEvents();
+    Page<Event> getAllEvents(int size, int page);
 
     /**
      * Get a specific event
