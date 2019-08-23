@@ -33,7 +33,7 @@ public class EventServiceImpl implements EventService {
     public Event replaceEvent(Event newEvent, int id) {
         return eventRepository.findById(id).map(event -> {
             event.setName(newEvent.getName());
-            event.setDate(newEvent.getDate());
+            event.setEventDate(newEvent.getEventDate());
             return eventRepository.save(event);
         }).orElseGet(() -> {
             newEvent.setId(id);

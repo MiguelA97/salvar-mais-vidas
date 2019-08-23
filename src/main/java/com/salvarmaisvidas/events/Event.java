@@ -1,10 +1,10 @@
 package com.salvarmaisvidas.events;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.salvarmaisvidas.collaborators.Collaborator;
+
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Event {
@@ -13,14 +13,16 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private LocalDate date;
+    private LocalDate eventDate;
+    @ManyToMany(mappedBy = "events")
+    private List<Collaborator> collaborators;
 
     public Event(){
     }
 
-    public Event(String name, LocalDate date) {
+    public Event(String name, LocalDate eventDate) {
         this.name = name;
-        this.date = date;
+        this.eventDate = eventDate;
     }
 
     public int getId() {
@@ -39,11 +41,11 @@ public class Event {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getEventDate() {
+        return eventDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setEventDate(LocalDate eventDate) {
+        this.eventDate = eventDate;
     }
 }

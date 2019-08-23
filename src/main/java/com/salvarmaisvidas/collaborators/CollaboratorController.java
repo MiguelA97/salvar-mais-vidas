@@ -3,19 +3,23 @@ package com.salvarmaisvidas.collaborators;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/collaborators")
 public class CollaboratorController {
 
     private final CollaboratorService collaboratorService;
+    private final CollaboratorRepository collaboratorRepository;
 
-    public CollaboratorController(CollaboratorService collaboratorService) {
+    public CollaboratorController(CollaboratorService collaboratorService, CollaboratorRepository collaboratorRepository) {
         this.collaboratorService = collaboratorService;
+        this.collaboratorRepository = collaboratorRepository;
     }
 
     @GetMapping
-    Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "0") int page){
-        return collaboratorService.getAllCollaborators(size, page);
+    Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "0") int page, CollaboratorFilter filter){
+        return collaboratorService.getAllCollaborators(size, page, filter);
     }
 
     @GetMapping("/{id}")
@@ -36,5 +40,25 @@ public class CollaboratorController {
     @DeleteMapping("/{id}")
     void deleteCollaborator(@PathVariable int id){
         collaboratorService.deleteCollaborator(id);
+    }
+
+    @GetMapping("/findByName/{name}")
+    List<Collaborator> findByName(@PathVariable String name){
+        return collaboratorRepository.findByName(name);
+    }
+
+    @GetMapping("/findByCc/{cc}")
+    Collaborator findByCc(@PathVariable int cc){
+        return collaboratorRepository.findByCc(cc);
+    }
+
+    @GetMapping("/findByTrainer")
+    List<Collaborator> findByTrainer(){
+        return collaboratorRepository.findByTrainer(true);
+    }
+
+    @GetMapping("/findCollabPartners")
+    List<FindCollabPartners> collabPartners(){
+        return collaboratorRepository.findCollabPartners();
     }
 }

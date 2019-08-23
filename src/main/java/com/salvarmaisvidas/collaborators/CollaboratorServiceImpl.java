@@ -15,8 +15,8 @@ public class CollaboratorServiceImpl implements CollaboratorService {
     }
 
     @Override
-    public Page<Collaborator> getAllCollaborators(int size, int page) {
-        return collaboratorRepository.findAll(PageRequest.of(page, size, Sort.by("name")));
+    public Page<Collaborator> getAllCollaborators(int size, int page, CollaboratorFilter filter) {
+        return collaboratorRepository.findAll(CollaboratorSpec.filter(filter), PageRequest.of(page, size, Sort.by("name")));
     }
 
     @Override

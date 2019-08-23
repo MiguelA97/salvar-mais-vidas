@@ -9,7 +9,7 @@ public interface CollaboratorService {
      *
      * @return list of collaborators
      */
-    Page<Collaborator> getAllCollaborators(int size, int page);
+    Page<Collaborator> getAllCollaborators(int size, int page, CollaboratorFilter filter);
 
     /**
      * Get a specific collaborator

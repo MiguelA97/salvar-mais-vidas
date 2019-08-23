@@ -1,7 +1,11 @@
 package com.salvarmaisvidas.collaborators;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.salvarmaisvidas.events.Event;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Collaborator {
@@ -11,15 +15,23 @@ public class Collaborator {
     private int id;
     private String name;
     private String email;
-    private LocalDate birth_date;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate birthDate;
     private String cc;
     private String address;
-    private String postal_code;
+    private String postalCode;
     private String locality;
     private int phone;
     private String job;
     private boolean trainer;
-    private LocalDate registration_date;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate registrationDate;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "collaborator_event",
+            joinColumns = @JoinColumn(name = "collaborator_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id")
+    )
+    private List<Event> events;
 
     public Collaborator(){
     }
@@ -49,11 +61,11 @@ public class Collaborator {
     }
 
     public LocalDate getBirthDate() {
-        return birth_date;
+        return birthDate;
     }
 
     public void setBirthDate(LocalDate birth_date) {
-        this.birth_date = birth_date;
+        this.birthDate = birth_date;
     }
 
     public String getCc() {
@@ -73,11 +85,11 @@ public class Collaborator {
     }
 
     public String getPostalCode() {
-        return postal_code;
+        return postalCode;
     }
 
     public void setPostalCode(String postal_code) {
-        this.postal_code = postal_code;
+        this.postalCode = postal_code;
     }
 
     public String getLocality() {
@@ -113,10 +125,14 @@ public class Collaborator {
     }
 
     public LocalDate getRegistrationDate() {
-        return registration_date;
+        return registrationDate;
     }
 
     public void setRegistrationDate(LocalDate registration_date) {
-        this.registration_date = registration_date;
+        this.registrationDate = registration_date;
+    }
+
+    public int getSize(){
+        return events.size();
     }
 }
