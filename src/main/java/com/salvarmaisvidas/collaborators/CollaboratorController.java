@@ -20,6 +20,7 @@ public class CollaboratorController {
     @GetMapping
     Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "0") int page, CollaboratorFilter filter){
         return collaboratorService.getAllCollaborators(size, page, filter);
+        //TODO : PROCURAR POR DATA NAO ESTA A FUNCIONAR!!
     }
 
     @GetMapping("/{id}")
@@ -40,21 +41,6 @@ public class CollaboratorController {
     @DeleteMapping("/{id}")
     void deleteCollaborator(@PathVariable int id){
         collaboratorService.deleteCollaborator(id);
-    }
-
-    @GetMapping("/findByName/{name}")
-    List<Collaborator> findByName(@PathVariable String name){
-        return collaboratorRepository.findByName(name);
-    }
-
-    @GetMapping("/findByCc/{cc}")
-    Collaborator findByCc(@PathVariable int cc){
-        return collaboratorRepository.findByCc(cc);
-    }
-
-    @GetMapping("/findByTrainer")
-    List<Collaborator> findByTrainer(){
-        return collaboratorRepository.findByTrainer(true);
     }
 
     @GetMapping("/findCollabPartners")

@@ -22,11 +22,14 @@ public class CollaboratorSpec {
                     predicates.add(cb.equal(root.get("cc"), filter.getCc()));
                 }
                 if(filter.getName() != null) {
-                    String like = "%"+filter.getName()+"%";
-                    predicates.add(cb.like(root.get("name"),like));
+                    String like = "%" + filter.getName() + "%";
+                    predicates.add(cb.like(root.get("name"), like));
                 }
-                if(filter.getRegistrationDate()!=null){
-                    predicates.add(cb.equal(root.get("registrationDate"),filter.getRegistrationDate()));
+                if(filter.getRegistrationDate() != null){
+                    predicates.add(cb.equal(root.get("registrationDate"), filter.getRegistrationDate()));
+                }
+                if (filter.isTrainer()){
+                    predicates.add(cb.equal(root.get("trainer"), filter.isTrainer()));
                 }
                 return cb.and(predicates.toArray(new Predicate[0]));
             }

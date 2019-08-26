@@ -9,6 +9,7 @@ public class CollaboratorFilter {
     private String name;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate registrationDate;
+    private boolean trainer;
 
     public CollaboratorFilter() {
     }
@@ -35,5 +36,13 @@ public class CollaboratorFilter {
 
     public void setRegistrationDate(LocalDate registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public boolean isTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(boolean trainer) {
+        this.trainer = trainer;
     }
 }
