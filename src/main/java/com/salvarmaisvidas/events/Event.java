@@ -1,5 +1,6 @@
 package com.salvarmaisvidas.events;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.salvarmaisvidas.collaborators.Collaborator;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate eventDate;
     @ManyToMany(mappedBy = "events")
     private List<Collaborator> collaborators;

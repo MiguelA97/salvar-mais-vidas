@@ -1,5 +1,6 @@
 package com.salvarmaisvidas.collaboratorevents;
 
+import com.salvarmaisvidas.collaborators.CollaboratorSpec;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -15,8 +16,8 @@ public class CollaboratorEventServiceImpl implements CollaboratorEventService {
     }
 
     @Override
-    public Page<CollaboratorEvent> getAllCollaboratorEvents(int size, int page) {
-        return collaboratorEventRepository.findAll(PageRequest.of(page, size, Sort.by("collaborator_id")));
+    public Page<CollaboratorEvent> getAllCollaboratorEvents(int size, int page, CollaboratorEventFilter filter) {
+        return collaboratorEventRepository.findAll(CollaboratorEventSpec.filter(filter) ,PageRequest.of(page, size, Sort.by("collaboratorId")));
     }
 
     @Override

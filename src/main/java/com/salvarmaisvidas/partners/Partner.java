@@ -1,5 +1,7 @@
 package com.salvarmaisvidas.partners;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +19,9 @@ public class Partner {
     private int nif;
     private int phone;
     private String job;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate birthDate;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate registrationDate;
     private String email;
     private String address;

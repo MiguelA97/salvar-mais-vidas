@@ -14,8 +14,8 @@ public class CollaboratorEventController {
     }
 
     @GetMapping
-    Page< CollaboratorEvent> getAllCollaboratorEvent(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page){
-        return collaboratorEventService.getAllCollaboratorEvents(size, page);
+    Page< CollaboratorEvent> getAllCollaboratorEvent(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page, CollaboratorEventFilter filter){
+        return collaboratorEventService.getAllCollaboratorEvents(size, page, filter);
     }
 
     @GetMapping("/{collaborator_id}/{event_id}")
