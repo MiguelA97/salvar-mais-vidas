@@ -10,6 +10,9 @@ public class PartnerFilter {
     private boolean collaborator;
     private boolean sub23;
 
+    public PartnerFilter() {
+    }
+
     public String getName() {
         return name;
     }

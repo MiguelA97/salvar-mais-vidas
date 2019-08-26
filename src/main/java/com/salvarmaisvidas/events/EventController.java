@@ -14,8 +14,8 @@ public class EventController {
     }
 
     @GetMapping
-    Page<Event> getAllEvents(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page){
-        return eventService.getAllEvents(size, page);
+    Page<Event> getAllEvents(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page, EventFilter filter){
+        return eventService.getAllEvents(size, page, filter);
     }
 
     @GetMapping("/{id}")

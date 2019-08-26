@@ -10,7 +10,7 @@ public interface EventService {
      *
      * @return list of event
      */
-    Page<Event> getAllEvents(int size, int page);
+    Page<Event> getAllEvents(int size, int page, EventFilter filter);
 
     /**
      * Get a specific event
