@@ -1,15 +1,15 @@
 package com.salvarmaisvidas.collaborators;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 public class CollaboratorFilter {
     private String cc;
     private String name;
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate registrationDate;
-    private boolean trainer;
+    private Boolean trainer;
 
     public CollaboratorFilter() {
     }
@@ -38,11 +38,11 @@ public class CollaboratorFilter {
         this.registrationDate = registrationDate;
     }
 
-    public boolean isTrainer() {
+    public Boolean isTrainer() {
         return trainer;
     }
 
-    public void setTrainer(boolean trainer) {
+    public void setTrainer(Boolean trainer) {
         this.trainer = trainer;
     }
 }

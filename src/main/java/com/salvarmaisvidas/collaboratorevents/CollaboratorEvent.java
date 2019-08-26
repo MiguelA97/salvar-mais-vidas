@@ -11,31 +11,31 @@ import javax.persistence.Table;
 public class CollaboratorEvent {
 
     @Id
-    private int collaboratorId;
+    private int collaborator_id;
     @Id
-    private int eventId;
+    private int event_id;
 
     public CollaboratorEvent(){
     }
 
-    public CollaboratorEvent(int collaboratorId, int eventId) {
-        this.collaboratorId = collaboratorId;
-        this.eventId = eventId;
+    public CollaboratorEvent(int collaborator_id, int event_id) {
+        this.collaborator_id = collaborator_id;
+        this.event_id = event_id;
     }
 
-    public int getCollaboratorId() {
-        return collaboratorId;
+    public int getCollaborator_id() {
+        return collaborator_id;
     }
 
-    public void setCollaboratorId(int collaboratorId) {
-        this.collaboratorId = collaboratorId;
+    public void setCollaborator_id(int collaborator_id) {
+        this.collaborator_id = collaborator_id;
     }
 
-    public int getEventId() {
-        return eventId;
+    public int getEvent_id() {
+        return event_id;
     }
 
     public void setEventid(int eventId) {
-        this.eventId = eventId;
+        this.event_id = eventId;
     }
 }

@@ -27,7 +27,7 @@ public class CollaboratorSpec {
                 if(filter.getRegistrationDate() != null){
                     predicates.add(cb.equal(root.get("registrationDate"), filter.getRegistrationDate()));
                 }
-                if (filter.isTrainer()){
+                if (filter.isTrainer() != null){
                     predicates.add(cb.equal(root.get("trainer"), filter.isTrainer()));
                 }
                 return cb.and(predicates.toArray(new Predicate[0]));

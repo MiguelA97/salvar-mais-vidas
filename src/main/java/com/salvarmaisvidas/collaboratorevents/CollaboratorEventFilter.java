@@ -1,25 +1,25 @@
 package com.salvarmaisvidas.collaboratorevents;
 
 public class CollaboratorEventFilter {
-    private int collaboratorId;
-    private int eventId;
+    private Integer collaboratorId;
+    private Integer eventId;
 
     public CollaboratorEventFilter() {
     }
 
-    public int getCollaboratorId() {
+    public Integer getCollaboratorId() {
         return collaboratorId;
     }
 
-    public void setCollaboratorId(int collaboratorId) {
+    public void setCollaboratorId(Integer collaboratorId) {
         this.collaboratorId = collaboratorId;
     }
 
-    public int getEventId() {
+    public Integer getEventId() {
         return eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(Integer eventId) {
         this.eventId = eventId;
     }
 }

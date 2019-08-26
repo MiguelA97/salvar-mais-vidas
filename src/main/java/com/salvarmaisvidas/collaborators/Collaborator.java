@@ -2,6 +2,7 @@ package com.salvarmaisvidas.collaborators;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.salvarmaisvidas.events.Event;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -25,6 +26,7 @@ public class Collaborator {
     private String job;
     private boolean trainer;
     @JsonFormat(pattern = "dd/MM/yyyy")
+    @CreatedDate
     private LocalDate registrationDate;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "collaborator_event",

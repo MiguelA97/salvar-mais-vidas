@@ -3,12 +3,12 @@ package com.salvarmaisvidas.partners;
 public class PartnerFilter {
     private String name;
     private String cc;
-    private int nif;
-    private boolean trainer;
-    private boolean status;
-    private boolean isPrivate;
-    private boolean collaborator;
-    private boolean sub23;
+    private Integer nif;
+    private Boolean trainer;
+    private Boolean status;
+    private Boolean isPrivate;
+    private Boolean collaborator;
+    private Boolean sub23;
 
     public PartnerFilter() {
     }
@@ -29,51 +29,51 @@ public class PartnerFilter {
         this.cc = cc;
     }
 
-    public int getNif() {
+    public Integer getNif() {
         return nif;
     }
 
-    public void setNif(int nif) {
+    public void setNif(Integer nif) {
         this.nif = nif;
     }
 
-    public boolean isTrainer() {
+    public Boolean isTrainer() {
         return trainer;
     }
 
-    public void setTrainer(boolean trainer) {
+    public void setTrainer(Boolean trainer) {
         this.trainer = trainer;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
-    public boolean isPrivate() {
+    public Boolean isPrivate() {
         return isPrivate;
     }
 
-    public void setPrivate(boolean aPrivate) {
+    public void setPrivate(Boolean aPrivate) {
         isPrivate = aPrivate;
     }
 
-    public boolean isCollaborator() {
+    public Boolean isCollaborator() {
         return collaborator;
     }
 
-    public void setCollaborator(boolean collaborator) {
+    public void setCollaborator(Boolean collaborator) {
         this.collaborator = collaborator;
     }
 
-    public boolean isSub23() {
+    public Boolean isSub23() {
         return sub23;
     }
 
-    public void setSub23(boolean sub23) {
+    public void setSub23(Boolean sub23) {
         this.sub23 = sub23;
     }
 }

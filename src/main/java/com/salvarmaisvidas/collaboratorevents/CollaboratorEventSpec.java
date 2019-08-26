@@ -17,10 +17,10 @@ public class CollaboratorEventSpec {
             public Predicate toPredicate(Root<CollaboratorEvent> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicates = new ArrayList<>();
 
-                if (filter.getCollaboratorId() != 0){
+                if (filter.getCollaboratorId() != null){
                     predicates.add(cb.equal(root.get("collaboratorId"), filter.getCollaboratorId()));
                 }
-                if (filter.getEventId() != 0){
+                if (filter.getEventId() != null){
                     predicates.add(cb.equal(root.get("eventId"), filter.getEventId()));
                 }
 

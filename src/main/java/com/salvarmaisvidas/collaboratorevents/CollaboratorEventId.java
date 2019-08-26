@@ -3,31 +3,31 @@ package com.salvarmaisvidas.collaboratorevents;
 import java.io.Serializable;
 
 public class CollaboratorEventId implements Serializable {
-    private int collaboratorId;
-    private int eventId;
+    private int collaborator_id;
+    private int event_id;
 
     public CollaboratorEventId(){
     }
 
-    public CollaboratorEventId(int collaboratorId, int eventId) {
-        this.collaboratorId = collaboratorId;
-        this.eventId = eventId;
+    public CollaboratorEventId(int collaborator_id, int event_id) {
+        this.collaborator_id = collaborator_id;
+        this.event_id = event_id;
     }
 
-    public int getCollaboratorId() {
-        return collaboratorId;
+    public int getCollaborator_id() {
+        return collaborator_id;
     }
 
-    public void setCollaboratorId(int collaboratorId) {
-        this.collaboratorId = collaboratorId;
+    public void setCollaborator_id(int collaborator_id) {
+        this.collaborator_id = collaborator_id;
     }
 
-    public int getEventId() {
-        return eventId;
+    public int getEvent_id() {
+        return event_id;
     }
 
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
+    public void setEvent_id(int event_id) {
+        this.event_id = event_id;
     }
 
     @Override
@@ -37,12 +37,12 @@ public class CollaboratorEventId implements Serializable {
 
         CollaboratorEventId ceId = (CollaboratorEventId) obj;
 
-        if (collaboratorId != ceId.collaboratorId || eventId != ceId.eventId) return false;
+        if (collaborator_id != ceId.collaborator_id || event_id != ceId.event_id) return false;
         return true;
     }
 
     @Override
     public int hashCode(){
-        return collaboratorId + eventId;
+        return collaborator_id + event_id;
     }
 }

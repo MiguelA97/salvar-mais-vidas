@@ -24,25 +24,24 @@ public class PartnerSpec {
                 if (filter.getCc() != null){
                     predicates.add(cb.equal(root.get("cc"), filter.getCc()));
                 }
-                if (filter.getNif() != 0){
+                if (filter.getNif() != null){
                     predicates.add(cb.equal(root.get("nif"), filter.getNif()));
                 }
-                if (filter.isTrainer()){
+                if (filter.isTrainer() != null){
                     predicates.add(cb.equal(root.get("trainer"), filter.isTrainer()));
                 }
-                if (filter.isStatus() || !filter.isStatus()){
+                if (filter.isStatus() != null){
                     predicates.add(cb.equal(root.get("status"), filter.isStatus()));
                 }
-                if (filter.isPrivate() || !filter.isPrivate()){
+                if (filter.isPrivate() != null){
                     predicates.add(cb.equal(root.get("isPrivate"), filter.isPrivate()));
                 }
-                if (filter.isCollaborator() || !filter.isCollaborator()){
+                if (filter.isCollaborator() != null){
                     predicates.add(cb.equal(root.get("collaborator"), filter.isCollaborator()));
                 }
-                if (filter.isSub23() || !filter.isSub23()){
+                if (filter.isSub23() != null){
                     predicates.add(cb.equal(root.get("sub23"), filter.isSub23()));
                 }
-
                 return cb.and(predicates.toArray(new Predicate[0]));
             }
         };
