@@ -17,8 +17,8 @@ public class Partner {
     private int nif;
     private int phone;
     private String job;
-    private LocalDate birth_date;
-    private LocalDate registration_date;
+    private LocalDate birthDate;
+    private LocalDate registrationDate;
     private String email;
     private String address;
     private String postal_code;
@@ -26,7 +26,7 @@ public class Partner {
     private boolean trainer;
     private boolean collaborator;
     private boolean sub23;
-    private boolean is_private;
+    private boolean isPrivate;
     private int quota;
     private boolean status;
 
@@ -82,19 +82,19 @@ public class Partner {
     }
 
     public LocalDate getBirthDate() {
-        return birth_date;
+        return birthDate;
     }
 
     public void setBirthDate(LocalDate birth_date) {
-        this.birth_date = birth_date;
+        this.birthDate = birth_date;
     }
 
     public LocalDate getRegistrationDate() {
-        return registration_date;
+        return registrationDate;
     }
 
     public void setRegistrationDate(LocalDate registration_date) {
-        this.registration_date = registration_date;
+        this.registrationDate = registration_date;
     }
 
     public String getEmail() {
@@ -154,11 +154,11 @@ public class Partner {
     }
 
     public boolean isPrivate() {
-        return is_private;
+        return isPrivate;
     }
 
     public void setIsPrivate(boolean is_private) {
-        this.is_private = is_private;
+        this.isPrivate = is_private;
     }
 
     public int getQuota() {

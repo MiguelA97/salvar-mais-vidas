@@ -9,7 +9,7 @@ public interface PartnerService {
      *
      * @return list of Partner
      */
-    Page<Partner> getAllPartners(int size, int page);
+    Page<Partner> getAllPartners(int size, int page, PartnerFilter filter);
 
     /**
      * Get a specific Partner

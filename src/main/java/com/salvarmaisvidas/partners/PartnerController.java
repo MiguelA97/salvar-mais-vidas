@@ -14,8 +14,8 @@ public class PartnerController {
     }
 
     @GetMapping
-    Page<Partner> getAllPartners(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page){
-        return partnerService.getAllPartners(size, page);
+    Page<Partner> getAllPartners(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page, PartnerFilter filter){
+        return partnerService.getAllPartners(size, page, filter);
     }
 
     @GetMapping("/{id}")
