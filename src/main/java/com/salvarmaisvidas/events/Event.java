@@ -1,6 +1,7 @@
 package com.salvarmaisvidas.events;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.salvarmaisvidas.annotations.event.UniqueEventName;
 import com.salvarmaisvidas.collaborators.Collaborator;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @UniqueEventName(message = "event.name.already.exists")
     private String name;
     private LocalDate eventDate;
     @ManyToMany(mappedBy = "events")
