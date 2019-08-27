@@ -1,8 +1,6 @@
 package com.salvarmaisvidas.collaborators;
 
-import com.salvarmaisvidas.annotations.collaborator.UniqueCollabCc;
-import com.salvarmaisvidas.annotations.collaborator.UniqueCollabEmail;
-import com.salvarmaisvidas.annotations.collaborator.UniqueCollabPhone;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.salvarmaisvidas.events.Event;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,20 +14,18 @@ public class Collaborator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @UniqueCollabEmail(message = "collaborator.email.already.exists")
     private String email;
-    private LocalDate birthDate;
-    @UniqueCollabCc(message = "collaborator.cc.already.exists")
+    private LocalDate birth_date;
     private String cc;
     private String address;
-    private String postalCode;
+    private String postal_code;
     private String locality;
-    @UniqueCollabPhone(message = "collaborator.phone.already.exists")
     private int phone;
     private String job;
     private boolean trainer;
-    private LocalDate registrationDate;
-    @ManyToMany(cascade = CascadeType.ALL)
+    private LocalDate registration_date;
+    @ManyToMany(cascade = CascadeType.REFRESH)
+    //@JsonBackReference
     @JoinTable(name = "collaborator_event",
             joinColumns = @JoinColumn(name = "collaborator_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id")
@@ -63,12 +59,12 @@ public class Collaborator {
         this.email = email;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public LocalDate getBirth_date() {
+        return birth_date;
     }
 
-    public void setBirthDate(LocalDate birth_date) {
-        this.birthDate = birth_date;
+    public void setBirth_date(LocalDate birth_date) {
+        this.birth_date = birth_date;
     }
 
     public String getCc() {
@@ -87,12 +83,12 @@ public class Collaborator {
         this.address = address;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getPostal_code() {
+        return postal_code;
     }
 
-    public void setPostalCode(String postal_code) {
-        this.postalCode = postal_code;
+    public void setPostal_code(String postal_code) {
+        this.postal_code = postal_code;
     }
 
     public String getLocality() {
@@ -127,12 +123,12 @@ public class Collaborator {
         this.trainer = trainer;
     }
 
-    public LocalDate getRegistrationDate() {
-        return registrationDate;
+    public LocalDate getRegistration_date() {
+        return registration_date;
     }
 
-    public void setRegistrationDate(LocalDate registration_date) {
-        this.registrationDate = registration_date;
+    public void setRegistration_date(LocalDate registration_date) {
+        this.registration_date = registration_date;
     }
 
     public List<Event> getEvents() {

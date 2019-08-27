@@ -1,10 +1,5 @@
 package com.salvarmaisvidas.partners;
 
-import com.salvarmaisvidas.annotations.partner.UniquePartnerCc;
-import com.salvarmaisvidas.annotations.partner.UniquePartnerEmail;
-import com.salvarmaisvidas.annotations.partner.UniquePartnerNif;
-import com.salvarmaisvidas.annotations.partner.UniquePartnerPhone;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,16 +13,12 @@ public class Partner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @UniquePartnerCc(message = "partner.cc.already.exists")
     private String cc;
-    @UniquePartnerNif(message = "partner.nif.already.exists")
     private int nif;
-    @UniquePartnerPhone(message = "partner.phone.already.exists")
     private int phone;
     private String job;
     private LocalDate birthDate;
     private LocalDate registrationDate;
-    @UniquePartnerEmail(message = "partner.email.already.exists")
     private String email;
     private String address;
     private String postal_code;
@@ -35,7 +26,7 @@ public class Partner {
     private boolean trainer;
     private boolean collaborator;
     private boolean sub23;
-    private boolean isPrivate;
+    private String partner_type;
     private int quota;
     private boolean status;
 
@@ -162,12 +153,12 @@ public class Partner {
         this.sub23 = sub23;
     }
 
-    public boolean isPrivate() {
-        return isPrivate;
+    public String getPartner_type() {
+        return partner_type;
     }
 
-    public void setIsPrivate(boolean is_private) {
-        this.isPrivate = is_private;
+    public void setPartner_type(String is_private) {
+        this.partner_type = is_private;
     }
 
     public int getQuota() {

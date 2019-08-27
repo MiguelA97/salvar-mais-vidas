@@ -1,11 +1,11 @@
 package com.salvarmaisvidas.events;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.salvarmaisvidas.annotations.event.UniqueEventName;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.salvarmaisvidas.collaborators.Collaborator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,18 +14,18 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @UniqueEventName(message = "event.name.already.exists")
     private String name;
-    private LocalDate eventDate;
+    private LocalDate event_date;
     @ManyToMany(mappedBy = "events")
-    private List<Collaborator> collaborators;
+    @JsonBackReference
+    private List<Collaborator> collaborators = new ArrayList<>();
 
     public Event(){
     }
 
-    public Event(String name, LocalDate eventDate) {
+    public Event(String name, LocalDate event_date) {
         this.name = name;
-        this.eventDate = eventDate;
+        this.event_date = event_date;
     }
 
     public int getId() {
@@ -44,11 +44,19 @@ public class Event {
         this.name = name;
     }
 
-    public LocalDate getEventDate() {
-        return eventDate;
+    public LocalDate getEvent_date() {
+        return event_date;
     }
 
-    public void setEventDate(LocalDate eventDate) {
-        this.eventDate = eventDate;
+    public void setEvent_date(LocalDate event_date) {
+        this.event_date = event_date;
+    }
+
+    public List<Collaborator> getCollaborators() {
+        return collaborators;
+    }
+
+    public void setCollaborators(List<Collaborator> collaborators) {
+        this.collaborators = collaborators;
     }
 }

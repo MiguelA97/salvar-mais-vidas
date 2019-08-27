@@ -9,6 +9,10 @@ public abstract class GeneralException extends RuntimeException {
         this.exceptions = exceptions;
     }
 
+    public GeneralException(String errorMessage){
+        this.errorMessage = errorMessage;
+    }
+
     public String getErrorMessage(){
         return errorMessage;
     }

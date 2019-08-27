@@ -26,12 +26,24 @@ public class PartnerServiceImpl implements PartnerService{
 
     @Override
     public Partner newPartner(Partner newPartner) {
+        if (partnerRepository.findByCc(newPartner.getCc()) != null ||
+                partnerRepository.findByEmail(newPartner.getEmail()) != null ||
+                partnerRepository.findByPhone(newPartner.getPhone()) != null ||
+                partnerRepository.findByNif(newPartner.getNif()) != null){
+            throw new DuplicatePartnerField();
+        }
         return partnerRepository.save(newPartner);
     }
 
     @Override
     public Partner replacePartner(Partner newPartner, int id) {
         return partnerRepository.findById(id).map(partner -> {
+            if (partnerRepository.findByCc(newPartner.getCc()) != null && !newPartner.getCc().equals(partner.getCc()) ||
+                    partnerRepository.findByEmail(newPartner.getEmail()) != null && !newPartner.getEmail().equals(partner.getEmail()) ||
+                    partnerRepository.findByPhone(newPartner.getPhone()) != null && newPartner.getPhone() != partner.getPhone() ||
+                    partnerRepository.findByNif(newPartner.getNif()) != null && newPartner.getNif() != partner.getNif()){
+                throw new DuplicatePartnerField();
+            }
             partner.setName(newPartner.getName());
             partner.setCc(newPartner.getCc());
             partner.setJob(newPartner.getJob());
@@ -46,11 +58,17 @@ public class PartnerServiceImpl implements PartnerService{
             partner.setTrainer(newPartner.isTrainer());
             partner.setCollaborator(newPartner.isCollaborator());
             partner.setSub23(newPartner.isSub23());
-            partner.setIsPrivate(newPartner.isPrivate());
+            partner.setPartner_type(newPartner.getPartner_type());
             partner.setQuota(newPartner.getQuota());
             partner.setStatus(newPartner.isStatus());
             return partnerRepository.save(partner);
         }).orElseGet(() -> {
+            if (partnerRepository.findByCc(newPartner.getCc()) != null ||
+                    partnerRepository.findByEmail(newPartner.getEmail()) != null ||
+                    partnerRepository.findByPhone(newPartner.getPhone()) != null ||
+                    partnerRepository.findByNif(newPartner.getNif()) != null){
+                throw new DuplicatePartnerField();
+            }
             newPartner.setId(id);
             return partnerRepository.save(newPartner);
         });

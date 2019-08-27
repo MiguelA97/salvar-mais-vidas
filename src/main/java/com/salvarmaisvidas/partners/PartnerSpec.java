@@ -33,8 +33,8 @@ public class PartnerSpec {
                 if (filter.isStatus() != null){
                     predicates.add(cb.equal(root.get("status"), filter.isStatus()));
                 }
-                if (filter.isPrivate() != null){
-                    predicates.add(cb.equal(root.get("isPrivate"), filter.isPrivate()));
+                if (filter.getPartner_type() != null){
+                    predicates.add(cb.equal(root.get("partner_type"), filter.getPartner_type()));
                 }
                 if (filter.isCollaborator() != null){
                     predicates.add(cb.equal(root.get("collaborator"), filter.isCollaborator()));

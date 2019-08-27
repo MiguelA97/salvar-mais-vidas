@@ -6,7 +6,7 @@ public class PartnerFilter {
     private Integer nif;
     private Boolean trainer;
     private Boolean status;
-    private Boolean isPrivate;
+    private String partner_type;
     private Boolean collaborator;
     private Boolean sub23;
 
@@ -53,12 +53,12 @@ public class PartnerFilter {
         this.status = status;
     }
 
-    public Boolean isPrivate() {
-        return isPrivate;
+    public String getPartner_type() {
+        return partner_type;
     }
 
-    public void setPrivate(Boolean aPrivate) {
-        isPrivate = aPrivate;
+    public void setPartner_type(String aPrivate) {
+        partner_type = aPrivate;
     }
 
     public Boolean isCollaborator() {

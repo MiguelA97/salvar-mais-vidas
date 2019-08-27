@@ -4,31 +4,31 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class CollaboratorEventId implements Serializable {
-    private int collaborator_id;
-    private int event_id;
+    private int collaborator;
+    private int event;
 
     public CollaboratorEventId(){
     }
 
-    public CollaboratorEventId(int collaborator_id, int event_id) {
-        this.collaborator_id = collaborator_id;
-        this.event_id = event_id;
+    public CollaboratorEventId(int collaborator, int event) {
+        this.collaborator = collaborator;
+        this.event = event;
     }
 
-    public int getCollaborator_id() {
-        return collaborator_id;
+    public int getCollaborator() {
+        return collaborator;
     }
 
-    public void setCollaborator_id(int collaborator_id) {
-        this.collaborator_id = collaborator_id;
+    public void setCollaborator(int collaborator) {
+        this.collaborator = collaborator;
     }
 
-    public int getEvent_id() {
-        return event_id;
+    public int getEvent() {
+        return event;
     }
 
-    public void setEvent_id(int event_id) {
-        this.event_id = event_id;
+    public void setEvent(int event) {
+        this.event = event;
     }
 
     @Override
@@ -38,12 +38,12 @@ public class CollaboratorEventId implements Serializable {
 
         CollaboratorEventId ceId = (CollaboratorEventId) obj;
 
-        if (collaborator_id != ceId.collaborator_id || event_id != ceId.event_id) return false;
+        if (collaborator != ceId.collaborator || event != ceId.event) return false;
         return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(collaborator_id, event_id);
+        return Objects.hash(collaborator, event);
     }
 }
