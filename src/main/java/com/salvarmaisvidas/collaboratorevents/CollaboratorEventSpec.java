@@ -18,10 +18,10 @@ public class CollaboratorEventSpec {
                 List<Predicate> predicates = new ArrayList<>();
 
                 if (filter.getCollaboratorId() != null){
-                    predicates.add(cb.equal(root.get("collaboratorId"), filter.getCollaboratorId()));
+                    predicates.add(cb.equal(root.get("collaborator_id"), filter.getCollaboratorId()));
                 }
                 if (filter.getEventId() != null){
-                    predicates.add(cb.equal(root.get("eventId"), filter.getEventId()));
+                    predicates.add(cb.equal(root.get("event_id"), filter.getEventId()));
                 }
 
                 return cb.and(predicates.toArray(new Predicate[0]));

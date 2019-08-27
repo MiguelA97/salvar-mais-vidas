@@ -35,7 +35,7 @@ public class CollaboratorEvent {
         return event_id;
     }
 
-    public void setEventid(int eventId) {
+    public void setEvent_id(int eventId) {
         this.event_id = eventId;
     }
 }

@@ -1,6 +1,7 @@
 package com.salvarmaisvidas.collaboratorevents;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class CollaboratorEventId implements Serializable {
     private int collaborator_id;
@@ -42,7 +43,7 @@ public class CollaboratorEventId implements Serializable {
     }
 
     @Override
-    public int hashCode(){
-        return collaborator_id + event_id;
+    public int hashCode() {
+        return Objects.hash(collaborator_id, event_id);
     }
 }

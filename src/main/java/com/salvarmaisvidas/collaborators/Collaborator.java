@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,6 @@ public class Collaborator {
     private int id;
     private String name;
     private String email;
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
     private String cc;
     private String address;
@@ -25,15 +25,13 @@ public class Collaborator {
     private int phone;
     private String job;
     private boolean trainer;
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    @CreatedDate
     private LocalDate registrationDate;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "collaborator_event",
             joinColumns = @JoinColumn(name = "collaborator_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id")
     )
-    private List<Event> events;
+    private List<Event> events = new ArrayList<>();
 
     public Collaborator(){
     }
@@ -134,7 +132,11 @@ public class Collaborator {
         this.registrationDate = registration_date;
     }
 
-    public int getSize(){
-        return events.size();
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

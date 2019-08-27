@@ -20,10 +20,7 @@ public class Partner {
     private int nif;
     private int phone;
     private String job;
-    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate birthDate;
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    @CreatedDate
     private LocalDate registrationDate;
     private String email;
     private String address;
@@ -37,9 +34,6 @@ public class Partner {
     private boolean status;
 
     public Partner(){
-        if (sub23) quota = 12;
-        if (isPrivate) quota = 24;
-        if (!isPrivate) quota = 100;
     }
 
     public int getId() {

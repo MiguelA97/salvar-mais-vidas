@@ -14,7 +14,6 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate eventDate;
     @ManyToMany(mappedBy = "events")
     private List<Collaborator> collaborators;

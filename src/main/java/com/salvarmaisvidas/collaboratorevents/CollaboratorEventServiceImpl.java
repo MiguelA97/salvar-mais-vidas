@@ -31,16 +31,18 @@ public class CollaboratorEventServiceImpl implements CollaboratorEventService {
     }
 
     @Override
-    public CollaboratorEvent replaceCollaboratorEvent(CollaboratorEvent newCollaboratorEvent, CollaboratorEventId collaboratorEventId) {
+    public CollaboratorEvent replaceCollaboratorEvent(CollaboratorEvent newCollaboratorEvent, int collaborator_id, int event_id) {
+        CollaboratorEventId collaboratorEventId = new CollaboratorEventId(collaborator_id, event_id);
         return collaboratorEventRepository.findById(collaboratorEventId).map(collaboratorEvent -> collaboratorEventRepository.save(collaboratorEvent)).orElseGet(() -> {
             newCollaboratorEvent.setCollaborator_id(collaboratorEventId.getCollaborator_id());
-            newCollaboratorEvent.setEventid(collaboratorEventId.getEvent_id());
+            newCollaboratorEvent.setEvent_id(collaboratorEventId.getEvent_id());
             return collaboratorEventRepository.save(newCollaboratorEvent);
         });
     }
 
     @Override
-    public void deleteCollaboratorEvent(CollaboratorEventId collaboratorEventId) {
+    public void deleteCollaboratorEvent(int collaborator_id, int event_id) {
+        CollaboratorEventId collaboratorEventId = new CollaboratorEventId(collaborator_id, event_id);
         collaboratorEventRepository.deleteById(collaboratorEventId);
     }
 }

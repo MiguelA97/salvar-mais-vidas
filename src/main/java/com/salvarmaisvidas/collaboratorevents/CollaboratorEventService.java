@@ -30,10 +30,10 @@ public interface CollaboratorEventService {
      *
      * @return replaced CollaboratorEvent
      */
-    CollaboratorEvent replaceCollaboratorEvent(CollaboratorEvent newCollaboratorEvent, CollaboratorEventId collaboratorEventId);
+    CollaboratorEvent replaceCollaboratorEvent(CollaboratorEvent newCollaboratorEvent, int collaborator_id, int event_id);
 
     /**
      * Deletes the specified CollaboratorEvent from the database
      */
-    void deleteCollaboratorEvent(CollaboratorEventId collaboratorEventId);
+    void deleteCollaboratorEvent(int collaborator_id, int event_id);
 }

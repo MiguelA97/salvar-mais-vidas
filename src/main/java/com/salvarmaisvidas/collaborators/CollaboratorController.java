@@ -1,9 +1,9 @@
 package com.salvarmaisvidas.collaborators;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/collaborators")
@@ -20,7 +20,6 @@ public class CollaboratorController {
     @GetMapping
     Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "0") int page, CollaboratorFilter filter){
         return collaboratorService.getAllCollaborators(size, page, filter);
-        //TODO : PROCURAR POR DATA NAO ESTA A FUNCIONAR!!
     }
 
     @GetMapping("/{id}")
@@ -44,7 +43,7 @@ public class CollaboratorController {
     }
 
     @GetMapping("/findCollabPartners")
-    List<FindCollabPartners> collabPartners(){
-        return collaboratorRepository.findCollabPartners();
+    Page<FindCollabPartners> collabPartners(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "0") int page){
+        return collaboratorRepository.findCollabPartners(PageRequest.of(page, size, Sort.by("name")));
     }
 }
