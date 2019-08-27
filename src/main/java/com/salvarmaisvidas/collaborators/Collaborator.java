@@ -1,5 +1,8 @@
 package com.salvarmaisvidas.collaborators;
 
+import com.salvarmaisvidas.annotations.collaborator.UniqueCollabCc;
+import com.salvarmaisvidas.annotations.collaborator.UniqueCollabEmail;
+import com.salvarmaisvidas.annotations.collaborator.UniqueCollabPhone;
 import com.salvarmaisvidas.events.Event;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,12 +16,15 @@ public class Collaborator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @UniqueCollabEmail(message = "collaborator.email.already.exists")
     private String email;
     private LocalDate birthDate;
+    @UniqueCollabCc(message = "collaborator.cc.already.exists")
     private String cc;
     private String address;
     private String postalCode;
     private String locality;
+    @UniqueCollabPhone(message = "collaborator.phone.already.exists")
     private int phone;
     private String job;
     private boolean trainer;
