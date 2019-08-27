@@ -1,9 +1,6 @@
 package com.salvarmaisvidas.collaborators;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.salvarmaisvidas.events.Event;
-import org.springframework.data.annotation.CreatedDate;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -13,19 +13,19 @@ public class FindCollabPartners {
         this.cc = cc;
     }
 
-    public int getPartnerId() {
+    public int getPartner_id() {
         return partner_id;
     }
 
-    public void setPartnerId(int partner_id) {
+    public void setPartner_id(int partner_id) {
         this.partner_id = partner_id;
     }
 
-    public int getCollaboratorId() {
+    public int getCollaborator_id() {
         return collaborator_id;
     }
 
-    public void setCollaboratorId(int collaborator_id) {
+    public void setCollaborator_id(int collaborator_id) {
         this.collaborator_id = collaborator_id;
     }
 

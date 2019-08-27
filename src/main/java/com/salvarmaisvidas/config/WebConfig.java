@@ -40,7 +40,5 @@ public class WebConfig implements WebMvcConfigurer {
                                 : location.createRelative("index.html");
                     }
                 });
-
     }
-
 }

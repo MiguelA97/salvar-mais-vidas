@@ -15,7 +15,9 @@ import java.util.Collections;
 public class User implements UserDetails {
 
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) int id;
-    private String username, password, role;
+    private String username;
+    private String password;
+    private String role;
 
     public User(){
     }
