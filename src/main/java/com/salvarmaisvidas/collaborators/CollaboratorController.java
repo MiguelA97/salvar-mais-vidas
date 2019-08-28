@@ -18,8 +18,8 @@ public class CollaboratorController {
     }
 
     @GetMapping
-    Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "0") int page, CollaboratorFilter filter){
-        return collaboratorService.getAllCollaborators(size, page, filter);
+    Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "0") int page, CollaboratorFilter filter, @RequestParam(defaultValue = "id") String sort){
+        return collaboratorService.getAllCollaborators(size, page, filter, sort);
     }
 
     @GetMapping("/{id}")
