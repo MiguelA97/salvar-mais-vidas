@@ -1,6 +1,5 @@
 package com.salvarmaisvidas.events;
 
-import com.salvarmaisvidas.collaborators.Collaborator;
 import org.springframework.data.domain.Page;
 
 public interface EventService {
@@ -10,7 +9,7 @@ public interface EventService {
      *
      * @return list of event
      */
-    Page<Event> getAllEvents(int size, int page, EventFilter filter);
+    Page<Event> getAllEvents(int size, int page, EventFilter filter, String sort, String dir);
 
     /**
      * Get a specific event

@@ -1,5 +1,6 @@
 package com.salvarmaisvidas.users;
 
+import com.salvarmaisvidas.util.PageWrapper;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +15,8 @@ public class UserController {
     }
 
     @GetMapping
-    Page<User> getAllUsers(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page){
-        return userService.getAllUsers(size, page);
+    PageWrapper<User> getAllUsers(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "role") String sort){
+        return new PageWrapper<>(userService.getAllUsers(size, page, sort));
     }
 
     @GetMapping("/{userId}")

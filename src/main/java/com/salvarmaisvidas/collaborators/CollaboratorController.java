@@ -1,5 +1,6 @@
 package com.salvarmaisvidas.collaborators;
 
+import com.salvarmaisvidas.util.PageWrapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -18,8 +19,8 @@ public class CollaboratorController {
     }
 
     @GetMapping
-    Page<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "0") int page, CollaboratorFilter filter, @RequestParam(defaultValue = "id") String sort){
-        return collaboratorService.getAllCollaborators(size, page, filter, sort);
+    PageWrapper<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "15") int size, @RequestParam(defaultValue = "0") int page, CollaboratorFilter filter, @RequestParam(defaultValue = "id") String sort, @RequestParam(defaultValue = "ASC") String dir){
+        return new PageWrapper<>(collaboratorService.getAllCollaborators(size, page, filter, sort, dir));
     }
 
     @GetMapping("/{id}")

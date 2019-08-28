@@ -15,8 +15,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Page<Event> getAllEvents(int size, int page, EventFilter filter) {
-        return eventRepository.findAll(EventSpec.filter(filter) ,PageRequest.of(page, size, Sort.by("name")));
+    public Page<Event> getAllEvents(int size, int page, EventFilter filter, String sort, String dir) {
+        return eventRepository.findAll(EventSpec.filter(filter), PageRequest.of(page, size, Sort.Direction.fromString(dir), sort));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class EventServiceImpl implements EventService {
                 throw new DuplicateEventField();
             }
             event.setName(newEvent.getName());
-            event.setEvent_date(newEvent.getEvent_date());
+            event.setEventDate(newEvent.getEventDate());
             event.setCollaborators(newEvent.getCollaborators());
             return eventRepository.save(event);
         }).orElseGet(() -> {

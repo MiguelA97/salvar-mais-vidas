@@ -1,6 +1,6 @@
 package com.salvarmaisvidas.partners;
 
-import org.springframework.data.domain.Page;
+import com.salvarmaisvidas.util.PageWrapper;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,8 +14,8 @@ public class PartnerController {
     }
 
     @GetMapping
-    Page<Partner> getAllPartners(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page, PartnerFilter filter){
-        return partnerService.getAllPartners(size, page, filter);
+    PageWrapper<Partner> getAllPartners(@RequestParam(defaultValue = "15") int size, @RequestParam(defaultValue = "0") int page, PartnerFilter filter, @RequestParam(defaultValue = "id") String sort, @RequestParam(defaultValue = "ASC") String dir){
+        return new PageWrapper<>(partnerService.getAllPartners(size, page, filter, sort, dir));
     }
 
     @GetMapping("/{id}")

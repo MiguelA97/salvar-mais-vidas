@@ -15,7 +15,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private LocalDate event_date;
+    private LocalDate eventDate;
     @ManyToMany(mappedBy = "events")
     @JsonBackReference
     private List<Collaborator> collaborators = new ArrayList<>();
@@ -23,9 +23,9 @@ public class Event {
     public Event(){
     }
 
-    public Event(String name, LocalDate event_date) {
+    public Event(String name, LocalDate eventDate) {
         this.name = name;
-        this.event_date = event_date;
+        this.eventDate = eventDate;
     }
 
     public int getId() {
@@ -44,12 +44,12 @@ public class Event {
         this.name = name;
     }
 
-    public LocalDate getEvent_date() {
-        return event_date;
+    public LocalDate getEventDate() {
+        return eventDate;
     }
 
-    public void setEvent_date(LocalDate event_date) {
-        this.event_date = event_date;
+    public void setEventDate(LocalDate eventDate) {
+        this.eventDate = eventDate;
     }
 
     public List<Collaborator> getCollaborators() {

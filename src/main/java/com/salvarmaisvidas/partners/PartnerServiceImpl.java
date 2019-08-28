@@ -15,8 +15,8 @@ public class PartnerServiceImpl implements PartnerService{
     }
 
     @Override
-    public Page<Partner> getAllPartners(int size, int page, PartnerFilter filter) {
-        return partnerRepository.findAll(PartnerSpec.filter(filter), PageRequest.of(page, size, Sort.by("name")));
+    public Page<Partner> getAllPartners(int size, int page, PartnerFilter filter, String sort, String dir) {
+        return partnerRepository.findAll(PartnerSpec.filter(filter), PageRequest.of(page, size, Sort.Direction.fromString(dir), sort));
     }
 
     @Override

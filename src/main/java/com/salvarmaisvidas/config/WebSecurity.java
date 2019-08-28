@@ -42,7 +42,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 //.and()
                // .httpBasic();
         http.requestMatcher(
-                i -> !i.getRequestURI().substring(i.getContextPath().length()).startsWith("/api")).httpBasic();
+                i -> !i.getRequestURI().substring(i.getContextPath().length()).startsWith("/api"))
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .httpBasic();
     }
 
     @Bean

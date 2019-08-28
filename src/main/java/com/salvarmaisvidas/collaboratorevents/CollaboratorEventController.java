@@ -1,6 +1,6 @@
 package com.salvarmaisvidas.collaboratorevents;
 
-import org.springframework.data.domain.Page;
+import com.salvarmaisvidas.util.PageWrapper;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,8 +14,8 @@ public class CollaboratorEventController {
     }
 
     @GetMapping
-    Page<CollaboratorEvent> getAllCollaboratorEvent(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page, CollaboratorEventFilter filter){
-        return collaboratorEventService.getAllCollaboratorEvents(size, page, filter);
+    PageWrapper<CollaboratorEvent> getAllCollaboratorEvent(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page, CollaboratorEventFilter filter){
+        return new PageWrapper<>(collaboratorEventService.getAllCollaboratorEvents(size, page, filter));
     }
 
     @GetMapping("/{collaborator_id}/{event_id}")

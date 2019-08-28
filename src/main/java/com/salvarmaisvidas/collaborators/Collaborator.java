@@ -1,6 +1,5 @@
 package com.salvarmaisvidas.collaborators;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.salvarmaisvidas.events.Event;
 import javax.persistence.*;
 import java.time.LocalDate;

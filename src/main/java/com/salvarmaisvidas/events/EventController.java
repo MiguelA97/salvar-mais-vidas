@@ -1,6 +1,8 @@
 package com.salvarmaisvidas.events;
 
+import com.salvarmaisvidas.util.PageWrapper;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,8 +16,8 @@ public class EventController {
     }
 
     @GetMapping
-    Page<Event> getAllEvents(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page, EventFilter filter){
-        return eventService.getAllEvents(size, page, filter);
+    PageWrapper<Event> getAllEvents(@RequestParam(defaultValue = "15") int size, @RequestParam(defaultValue = "0") int page, EventFilter filter, @RequestParam(defaultValue = "eventDate") String sort, @RequestParam(defaultValue = "DESC") String dir){
+        return new PageWrapper<>(eventService.getAllEvents(size, page, filter, sort, dir));
     }
 
     @GetMapping("/{id}")

@@ -9,7 +9,7 @@ public interface UserService {
      *
      * @return list of users
      */
-    Page<User> getAllUsers(int size, int page);
+    Page<User> getAllUsers(int size, int page, String sort);
 
     /**
      * Get a specific user
