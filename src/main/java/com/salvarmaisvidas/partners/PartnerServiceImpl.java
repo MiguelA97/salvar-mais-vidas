@@ -31,11 +31,20 @@ public class PartnerServiceImpl implements PartnerService{
 
     @Override
     public Partner newPartner(Partner newPartner) {
-        if (partnerRepository.findByCc(newPartner.getCc()) != null ||
-                partnerRepository.findByEmail(newPartner.getEmail()) != null ||
-                partnerRepository.findByPhone(newPartner.getPhone()) != null ||
-                partnerRepository.findByNif(newPartner.getNif()) != null){
-            throw new DuplicatePartnerField();
+        if (newPartner.getPartner_type().equals("particular")) {
+            if (partnerRepository.findByCc(newPartner.getCc()) != null ||
+                    partnerRepository.findByEmail(newPartner.getEmail()) != null ||
+                    partnerRepository.findByPhone(newPartner.getPhone()) != null ||
+                    partnerRepository.findByNif(newPartner.getNif()) != null) {
+                throw new DuplicatePartnerField();
+            }
+        }
+        else {
+            if (partnerRepository.findByEmail(newPartner.getEmail()) != null ||
+                    partnerRepository.findByPhone(newPartner.getPhone()) != null ||
+                    partnerRepository.findByNif(newPartner.getNif()) != null) {
+                throw new DuplicatePartnerField();
+            }
         }
         if (newPartner.getPartner_type().equals("particular") && newPartner.isCollaborator()) {
             if (collaboratorRepository.findByCc(newPartner.getCc()) == null &&
