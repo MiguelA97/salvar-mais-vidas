@@ -15,8 +15,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> getAllUsers(int size, int page, String sort) {
-        return userRepository.findAll(PageRequest.of(page, size, Sort.by(sort)));
+    public Page<User> getAllUsers(int pageSize, int page, String sort) {
+        return userRepository.findAll(PageRequest.of(page, pageSize, Sort.by(sort)));
     }
 
     @Override

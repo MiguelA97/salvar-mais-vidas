@@ -15,8 +15,8 @@ public class UserController {
     }
 
     @GetMapping
-    PageWrapper<User> getAllUsers(@RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "role") String sort){
-        return new PageWrapper<>(userService.getAllUsers(size, page, sort));
+    PageWrapper<User> getAllUsers(@RequestParam(defaultValue = "5") int pageSize, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "role") String sort){
+        return new PageWrapper<>(userService.getAllUsers(pageSize, page, sort));
     }
 
     @GetMapping("/{userId}")

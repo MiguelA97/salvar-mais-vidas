@@ -15,8 +15,8 @@ public class CollaboratorServiceImpl implements CollaboratorService {
     }
 
     @Override
-    public Page<Collaborator> getAllCollaborators(int size, int page, CollaboratorFilter filter, String sort, String dir) {
-        return collaboratorRepository.findAll(CollaboratorSpec.filter(filter), PageRequest.of(page, size, Sort.Direction.fromString(dir), sort));
+    public Page<Collaborator> getAllCollaborators(int pageSize, int page, CollaboratorFilter filter, String sort, String dir) {
+        return collaboratorRepository.findAll(CollaboratorSpec.filter(filter), PageRequest.of(page, pageSize, Sort.Direction.fromString(dir), sort));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
                 collaboratorRepository.findByPhone(newCollaborator.getPhone()) != null && newCollaborator.getPhone() != collaborator.getPhone()){
                 throw new DuplicateCollaboratorField();
             }
-            collaborator.setBirth_date(newCollaborator.getBirth_date());
+            collaborator.setBirthDate(newCollaborator.getBirthDate());
             collaborator.setCc(newCollaborator.getCc());
             collaborator.setJob(newCollaborator.getJob());
             collaborator.setTrainer(newCollaborator.isTrainer());
@@ -52,7 +52,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
             collaborator.setPostal_code(newCollaborator.getPostal_code());
             collaborator.setLocality(newCollaborator.getLocality());
             collaborator.setPhone(newCollaborator.getPhone());
-            collaborator.setRegistration_date(newCollaborator.getRegistration_date());
+            collaborator.setRegistrationDate(newCollaborator.getRegistrationDate());
             collaborator.setEvents(newCollaborator.getEvents());
             return collaboratorRepository.save(collaborator);
         }).orElseGet(() -> {

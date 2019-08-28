@@ -9,7 +9,7 @@ public interface PartnerService {
      *
      * @return list of Partner
      */
-    Page<Partner> getAllPartners(int size, int page, PartnerFilter filter, String sort, String dir);
+    Page<Partner> getAllPartners(int pageSize, int page, PartnerFilter filter, String sort, String dir);
 
     /**
      * Get a specific Partner

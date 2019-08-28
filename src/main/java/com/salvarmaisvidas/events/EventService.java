@@ -9,7 +9,7 @@ public interface EventService {
      *
      * @return list of event
      */
-    Page<Event> getAllEvents(int size, int page, EventFilter filter, String sort, String dir);
+    Page<Event> getAllEvents(int pageSize, int page, EventFilter filter, String sort, String dir);
 
     /**
      * Get a specific event

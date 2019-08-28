@@ -14,8 +14,8 @@ public class PartnerController {
     }
 
     @GetMapping
-    PageWrapper<Partner> getAllPartners(@RequestParam(defaultValue = "15") int size, @RequestParam(defaultValue = "0") int page, PartnerFilter filter, @RequestParam(defaultValue = "id") String sort, @RequestParam(defaultValue = "ASC") String dir){
-        return new PageWrapper<>(partnerService.getAllPartners(size, page, filter, sort, dir));
+    PageWrapper<Partner> getAllPartners(@RequestParam(defaultValue = "15") int pageSize, @RequestParam(defaultValue = "0") int page, PartnerFilter filter, @RequestParam(defaultValue = "id") String sort, @RequestParam(defaultValue = "ASC") String dir){
+        return new PageWrapper<>(partnerService.getAllPartners(pageSize, page, filter, sort, dir));
     }
 
     @GetMapping("/{id}")

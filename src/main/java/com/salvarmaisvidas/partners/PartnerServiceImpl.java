@@ -1,5 +1,8 @@
 package com.salvarmaisvidas.partners;
 
+import com.salvarmaisvidas.collaborators.Collaborator;
+import com.salvarmaisvidas.collaborators.CollaboratorRepository;
+import com.salvarmaisvidas.collaborators.DuplicateCollaboratorField;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -9,14 +12,16 @@ import org.springframework.stereotype.Service;
 public class PartnerServiceImpl implements PartnerService{
 
     private final PartnerRepository partnerRepository;
+    private final CollaboratorRepository collaboratorRepository;
 
-    public PartnerServiceImpl(PartnerRepository partnerRepository) {
+    public PartnerServiceImpl(PartnerRepository partnerRepository, CollaboratorRepository collaboratorRepository) {
         this.partnerRepository = partnerRepository;
+        this.collaboratorRepository = collaboratorRepository;
     }
 
     @Override
-    public Page<Partner> getAllPartners(int size, int page, PartnerFilter filter, String sort, String dir) {
-        return partnerRepository.findAll(PartnerSpec.filter(filter), PageRequest.of(page, size, Sort.Direction.fromString(dir), sort));
+    public Page<Partner> getAllPartners(int pageSize, int page, PartnerFilter filter, String sort, String dir) {
+        return partnerRepository.findAll(PartnerSpec.filter(filter), PageRequest.of(page, pageSize, Sort.Direction.fromString(dir), sort));
     }
 
     @Override
@@ -31,6 +36,25 @@ public class PartnerServiceImpl implements PartnerService{
                 partnerRepository.findByPhone(newPartner.getPhone()) != null ||
                 partnerRepository.findByNif(newPartner.getNif()) != null){
             throw new DuplicatePartnerField();
+        }
+        if (newPartner.getPartner_type().equals("particular") && newPartner.isCollaborator()) {
+            if (collaboratorRepository.findByCc(newPartner.getCc()) == null &&
+                    collaboratorRepository.findByEmail(newPartner.getEmail()) == null &&
+                    collaboratorRepository.findByPhone(newPartner.getPhone()) == null) {
+                Collaborator collaborator = new Collaborator();
+                collaborator.setName(newPartner.getName());
+                collaborator.setEmail(newPartner.getEmail());
+                collaborator.setBirthDate(newPartner.getBirthDate());
+                collaborator.setCc(newPartner.getCc());
+                collaborator.setAddress(newPartner.getAddress());
+                collaborator.setPostal_code(newPartner.getPostalCode());
+                collaborator.setLocality(newPartner.getLocality());
+                collaborator.setPhone(newPartner.getPhone());
+                collaborator.setJob(newPartner.getJob());
+                collaborator.setTrainer(newPartner.isTrainer());
+                collaborator.setRegistrationDate(newPartner.getRegistrationDate());
+                collaboratorRepository.save(collaborator);
+            }
         }
         return partnerRepository.save(newPartner);
     }

@@ -14,7 +14,7 @@ public class Collaborator {
     private int id;
     private String name;
     private String email;
-    private LocalDate birth_date;
+    private LocalDate birthDate;
     private String cc;
     private String address;
     private String postal_code;
@@ -22,7 +22,7 @@ public class Collaborator {
     private int phone;
     private String job;
     private boolean trainer;
-    private LocalDate registration_date;
+    private LocalDate registrationDate;
     @ManyToMany(cascade = CascadeType.REFRESH)
     //@JsonBackReference
     @JoinTable(name = "collaborator_event",
@@ -58,12 +58,12 @@ public class Collaborator {
         this.email = email;
     }
 
-    public LocalDate getBirth_date() {
-        return birth_date;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(LocalDate birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getCc() {
@@ -122,12 +122,12 @@ public class Collaborator {
         this.trainer = trainer;
     }
 
-    public LocalDate getRegistration_date() {
-        return registration_date;
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setRegistration_date(LocalDate registration_date) {
-        this.registration_date = registration_date;
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public List<Event> getEvents() {
@@ -136,5 +136,9 @@ public class Collaborator {
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public int getEventsSize(){
+        return events.size();
     }
 }

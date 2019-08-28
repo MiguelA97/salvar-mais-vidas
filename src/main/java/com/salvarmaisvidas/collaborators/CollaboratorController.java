@@ -1,10 +1,12 @@
 package com.salvarmaisvidas.collaborators;
 
 import com.salvarmaisvidas.util.PageWrapper;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/collaborators")
@@ -19,8 +21,8 @@ public class CollaboratorController {
     }
 
     @GetMapping
-    PageWrapper<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "15") int size, @RequestParam(defaultValue = "0") int page, CollaboratorFilter filter, @RequestParam(defaultValue = "id") String sort, @RequestParam(defaultValue = "ASC") String dir){
-        return new PageWrapper<>(collaboratorService.getAllCollaborators(size, page, filter, sort, dir));
+    PageWrapper<Collaborator> getAllCollaborators(@RequestParam(defaultValue = "15") int pageSize, @RequestParam(defaultValue = "0") int page, CollaboratorFilter filter, @RequestParam(defaultValue = "id") String sort, @RequestParam(defaultValue = "ASC") String dir){
+        return new PageWrapper<>(collaboratorService.getAllCollaborators(pageSize, page, filter, sort, dir));
     }
 
     @GetMapping("/{id}")
@@ -44,7 +46,45 @@ public class CollaboratorController {
     }
 
     @GetMapping("/findCollabPartners")
-    Page<FindCollabPartners> collabPartners(@RequestParam(defaultValue = "20") int size, @RequestParam(defaultValue = "0") int page){
-        return collaboratorRepository.findCollabPartners(PageRequest.of(page, size, Sort.by("name")));
+    PageWrapper<FindCollabPartners> collabPartners(@RequestParam(defaultValue = "20") int pageSize, @RequestParam(defaultValue = "0") int page){
+        return  new PageWrapper<>(collaboratorRepository.findCollabPartners(PageRequest.of(page, pageSize, Sort.by("name"))));
+    }
+
+//    @GetMapping("/events/{id}")
+//    List<Event> getEvents(@PathVariable int id){
+//        Collaborator collaborator = collaboratorRepository.findById(id).get();
+//        return collaborator.getEvents();
+//    }
+
+    @GetMapping("/collabWithMostEvents")
+    List<Collaborator> getCollabWithMostEvents(){
+        List<Collaborator> collaborators = collaboratorRepository.findAll();
+        List<Collaborator> res = new ArrayList<>();
+        int max = 0;
+        for (Collaborator collab : collaborators) {
+            if (collab.getEventsSize() > max)
+                max = collab.getEventsSize();
+        }
+        for (Collaborator collab : collaborators) {
+            if (collab.getEventsSize() == max)
+                res.add(collab);
+        }
+        return res;
+    }
+
+    @GetMapping("/collabWithLessEvents")
+    List<Collaborator> getCollabWithLessEvents(){
+        List<Collaborator> collaborators = collaboratorRepository.findAll();
+        List<Collaborator> res = new ArrayList<>();
+        int min = collaborators.get(0).getEventsSize();
+        for (Collaborator collab : collaborators) {
+            if (collab.getEventsSize() < min)
+                min = collab.getEventsSize();
+        }
+        for (Collaborator collab : collaborators) {
+            if (collab.getEventsSize() == min)
+                res.add(collab);
+        }
+        return res;
     }
 }

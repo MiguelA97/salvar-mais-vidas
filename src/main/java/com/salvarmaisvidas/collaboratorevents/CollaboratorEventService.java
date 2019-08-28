@@ -9,7 +9,7 @@ public interface CollaboratorEventService {
      *
      * @return list of CollaboratorEvent
      */
-    Page<CollaboratorEvent> getAllCollaboratorEvents(int size, int page, CollaboratorEventFilter filter);
+    Page<CollaboratorEvent> getAllCollaboratorEvents(int pageSize, int page, CollaboratorEventFilter filter);
 
     /**
      * Get a specific CollaboratorEvent

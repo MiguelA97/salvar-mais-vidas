@@ -15,8 +15,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Page<Event> getAllEvents(int size, int page, EventFilter filter, String sort, String dir) {
-        return eventRepository.findAll(EventSpec.filter(filter), PageRequest.of(page, size, Sort.Direction.fromString(dir), sort));
+    public Page<Event> getAllEvents(int pageSize, int page, EventFilter filter, String sort, String dir) {
+        return eventRepository.findAll(EventSpec.filter(filter), PageRequest.of(page, pageSize, Sort.Direction.fromString(dir), sort));
     }
 
     @Override
