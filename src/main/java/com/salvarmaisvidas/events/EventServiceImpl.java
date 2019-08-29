@@ -26,29 +26,22 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event newEvent(Event newEvent) {
-        if (eventRepository.findByName(newEvent.getName()) != null){
+        if (eventRepository.findByName(newEvent.getName()) != null)
             throw new DuplicateEventField();
-        }
         return eventRepository.save(newEvent);
     }
 
     @Override
     public Event replaceEvent(Event newEvent, int id) {
         return eventRepository.findById(id).map(event -> {
-            if (eventRepository.findByName(newEvent.getName()) != null && !newEvent.getName().equals(event.getName())){
+            if (eventRepository.findByName(newEvent.getName()) != null && !newEvent.getName().equals(event.getName()))
                 throw new DuplicateEventField();
-            }
+
             event.setName(newEvent.getName());
             event.setEventDate(newEvent.getEventDate());
             event.setCollaborators(newEvent.getCollaborators());
             return eventRepository.save(event);
-        }).orElseGet(() -> {
-            if (eventRepository.findByName(newEvent.getName()) != null){
-                throw new DuplicateEventField();
-            }
-            newEvent.setId(id);
-            return eventRepository.save(newEvent);
-        });
+        }).orElseThrow(() -> new EventNotFoundException(id));
     }
 
     @Override
