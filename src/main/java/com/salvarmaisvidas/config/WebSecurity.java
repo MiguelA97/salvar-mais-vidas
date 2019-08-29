@@ -1,6 +1,6 @@
 package com.salvarmaisvidas.config;
 
-import com.salvarmaisvidas.users.UserPrincipalDetailsService;
+import com.salvarmaisvidas.user.UserPrincipalDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
