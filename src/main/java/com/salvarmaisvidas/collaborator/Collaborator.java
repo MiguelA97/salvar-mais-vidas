@@ -17,7 +17,7 @@ public class Collaborator {
     private LocalDate birthDate;
     private String cc;
     private String address;
-    private String postal_code;
+    private String postalCode;
     private String locality;
     private int phone;
     private String job;
@@ -82,12 +82,12 @@ public class Collaborator {
         this.address = address;
     }
 
-    public String getPostal_code() {
-        return postal_code;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public String getLocality() {

@@ -47,7 +47,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
             collaborator.setName(newCollaborator.getName());
             collaborator.setEmail(newCollaborator.getEmail());
             collaborator.setAddress(newCollaborator.getAddress());
-            collaborator.setPostal_code(newCollaborator.getPostal_code());
+            collaborator.setPostalCode(newCollaborator.getPostalCode());
             collaborator.setLocality(newCollaborator.getLocality());
             collaborator.setPhone(newCollaborator.getPhone());
             collaborator.setRegistrationDate(newCollaborator.getRegistrationDate());

@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 public class PartnerServiceImpl implements PartnerService{
 
     private final String PARTICULAR_PARTNER = "particular";
+    private final int SUB23_QUOTA = 12;
+    private final int PARTICULAR_QUOTA = 24;
+    private final int INSTITUTIONAL_QUOTA = 100;
 
     private final PartnerRepository partnerRepository;
     private final CollaboratorService collaboratorService;
@@ -47,7 +50,7 @@ public class PartnerServiceImpl implements PartnerService{
                 collaborator.setBirthDate(newPartner.getBirthDate());
                 collaborator.setCc(newPartner.getCc());
                 collaborator.setAddress(newPartner.getAddress());
-                collaborator.setPostal_code(newPartner.getPostalCode());
+                collaborator.setPostalCode(newPartner.getPostalCode());
                 collaborator.setLocality(newPartner.getLocality());
                 collaborator.setPhone(newPartner.getPhone());
                 collaborator.setJob(newPartner.getJob());
@@ -55,6 +58,8 @@ public class PartnerServiceImpl implements PartnerService{
                 collaborator.setRegistrationDate(newPartner.getRegistrationDate());
                 collaboratorService.newCollaborator(collaborator);
         }
+        newPartner.setQuota(selectQuota(newPartner));
+
         return partnerRepository.save(newPartner);
     }
 
@@ -86,7 +91,7 @@ public class PartnerServiceImpl implements PartnerService{
             partner.setCollaborator(newPartner.isCollaborator());
             partner.setSub23(newPartner.isSub23());
             partner.setPartnerType(newPartner.getPartnerType());
-            partner.setQuota(newPartner.getQuota());
+            partner.setQuota(selectQuota(newPartner));
             partner.setStatus(newPartner.isStatus());
             return partnerRepository.save(partner);
         }).orElseThrow(() -> new PartnerNotFoundException(id));
@@ -95,5 +100,14 @@ public class PartnerServiceImpl implements PartnerService{
     @Override
     public void deletePartner(int id) {
         partnerRepository.deleteById(id);
+    }
+
+    private int selectQuota(Partner newPartner){
+        if (newPartner.isSub23())
+           return SUB23_QUOTA;
+        else if (newPartner.getPartnerType().equals(PARTICULAR_PARTNER))
+            return PARTICULAR_QUOTA;
+        else
+            return INSTITUTIONAL_QUOTA;
     }
 }

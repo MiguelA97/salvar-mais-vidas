@@ -56,34 +56,27 @@ public class CollaboratorController {
 //        return collaborator.getEvents();
 //    }
 
-    @GetMapping("/collabWithMostEvents")
-    List<Collaborator> getCollabWithMostEvents(){
+    @GetMapping("/collabEvents")
+    List<Collaborator> getCollabEventsParticipations(@RequestParam(defaultValue = "more") String sort){
         List<Collaborator> collaborators = collaboratorRepository.findAll();
         List<Collaborator> res = new ArrayList<>();
-        int max = 0;
-        for (Collaborator collab : collaborators) {
-            if (collab.getEventsSize() > max)
-                max = collab.getEventsSize();
+        if (sort.equals("more")){
+            int max = 0;
+            for (Collaborator collab : collaborators)
+                if (collab.getEventsSize() > max)
+                    max = collab.getEventsSize();
+            for (Collaborator collab : collaborators)
+                if (collab.getEventsSize() == max)
+                    res.add(collab);
         }
-        for (Collaborator collab : collaborators) {
-            if (collab.getEventsSize() == max)
-                res.add(collab);
-        }
-        return res;
-    }
-
-    @GetMapping("/collabWithLessEvents")
-    List<Collaborator> getCollabWithLessEvents(){
-        List<Collaborator> collaborators = collaboratorRepository.findAll();
-        List<Collaborator> res = new ArrayList<>();
-        int min = collaborators.get(0).getEventsSize();
-        for (Collaborator collab : collaborators) {
-            if (collab.getEventsSize() < min)
-                min = collab.getEventsSize();
-        }
-        for (Collaborator collab : collaborators) {
-            if (collab.getEventsSize() == min)
-                res.add(collab);
+        else if (sort.equals("less")){
+            int min = collaborators.get(0).getEventsSize();
+            for (Collaborator collab : collaborators)
+                if (collab.getEventsSize() < min)
+                    min = collab.getEventsSize();
+            for (Collaborator collab : collaborators)
+                if (collab.getEventsSize() == min)
+                    res.add(collab);
         }
         return res;
     }
