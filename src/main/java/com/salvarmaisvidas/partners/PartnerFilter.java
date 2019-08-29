@@ -6,7 +6,7 @@ public class PartnerFilter {
     private Integer nif;
     private Boolean trainer;
     private Boolean status;
-    private String partner_type;
+    private String partnerType;
     private Boolean collaborator;
     private Boolean sub23;
 
@@ -53,12 +53,12 @@ public class PartnerFilter {
         this.status = status;
     }
 
-    public String getPartner_type() {
-        return partner_type;
+    public String getPartnerType() {
+        return partnerType;
     }
 
-    public void setPartner_type(String aPrivate) {
-        partner_type = aPrivate;
+    public void setPartnerType(String aPrivate) {
+        partnerType = aPrivate;
     }
 
     public Boolean isCollaborator() {

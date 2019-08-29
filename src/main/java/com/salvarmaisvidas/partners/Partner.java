@@ -26,7 +26,7 @@ public class Partner {
     private boolean trainer;
     private boolean collaborator;
     private boolean sub23;
-    private String partner_type;
+    private String partnerType;
     private int quota;
     private boolean status;
 
@@ -153,12 +153,12 @@ public class Partner {
         this.sub23 = sub23;
     }
 
-    public String getPartner_type() {
-        return partner_type;
+    public String getPartnerType() {
+        return partnerType;
     }
 
-    public void setPartner_type(String is_private) {
-        this.partner_type = is_private;
+    public void setPartnerType(String is_private) {
+        this.partnerType = is_private;
     }
 
     public int getQuota() {
