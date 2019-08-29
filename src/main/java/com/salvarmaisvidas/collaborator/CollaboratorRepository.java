@@ -13,6 +13,6 @@ public interface CollaboratorRepository extends JpaRepository<Collaborator, Inte
     Collaborator findByCc(String cc);
     Collaborator findByPhone(int phone);
 
-    @Query(value = "SELECT NEW com.salvarmaisvidas.collaborators.FindCollabPartners(p.id, c.id, p.name, p.cc) from Partner as p inner join Collaborator as c on p.cc = c.cc")
+    @Query(value = "SELECT NEW com.salvarmaisvidas.collaborator.FindCollabPartners(p.id, c.id, p.name, p.cc) from Partner as p inner join Collaborator as c on p.cc = c.cc")
     Page<FindCollabPartners> findCollabPartners(PageRequest pageRequest);
 }

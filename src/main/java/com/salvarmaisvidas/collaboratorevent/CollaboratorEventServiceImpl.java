@@ -33,12 +33,7 @@ public class CollaboratorEventServiceImpl implements CollaboratorEventService {
     @Override
     public CollaboratorEvent replaceCollaboratorEvent(CollaboratorEvent newCollaboratorEvent, int collaborator_id, int event_id) {
         CollaboratorEventId collaboratorEventId = new CollaboratorEventId(collaborator_id, event_id);
-        return collaboratorEventRepository.findById(collaboratorEventId).map(collaboratorEvent -> collaboratorEventRepository.save(collaboratorEvent)).orElseGet(() -> {
-            newCollaboratorEvent.setCollaborator_id(collaboratorEventId.getCollaborator());
-            newCollaboratorEvent.setEvent_id(collaboratorEventId.getEvent());
-            return collaboratorEventRepository.save(newCollaboratorEvent);
-        });
-
+        return collaboratorEventRepository.findById(collaboratorEventId).map(collaboratorEventRepository::save).orElseThrow(() -> new CollaboratorEventNotFoundException(collaborator_id, event_id));
     }
 
     @Override
