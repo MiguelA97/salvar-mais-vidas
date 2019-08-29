@@ -36,10 +36,7 @@ public class UserServiceImpl implements UserService {
             user.setPassword(newUser.getPassword());
             user.setRole(newUser.getRole());
             return userRepository.save(user);
-        }).orElseGet(() -> {
-            newUser.setId(userId);
-            return userRepository.save(newUser);
-        });
+        }).orElseThrow(() -> new UserNotFoundException(userId));
     }
 
     @Override
