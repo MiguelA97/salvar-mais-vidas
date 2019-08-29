@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -60,23 +61,26 @@ public class CollaboratorController {
     List<Collaborator> getCollabEventsParticipations(@RequestParam(defaultValue = "more") String sort){
         List<Collaborator> collaborators = collaboratorRepository.findAll();
         List<Collaborator> res = new ArrayList<>();
+
         if (sort.equals("more")){
-            int max = 0;
-            for (Collaborator collab : collaborators)
-                if (collab.getEventsSize() > max)
-                    max = collab.getEventsSize();
-            for (Collaborator collab : collaborators)
-                if (collab.getEventsSize() == max)
-                    res.add(collab);
+            collaborators.sort(Comparator.comparing(Collaborator::getEventsSize, Comparator.reverseOrder()));
+            int max = collaborators.get(0).getEventsSize();
+            for (Collaborator collab : collaborators){
+                if (collab.getEventsSize() != max) {
+                    break;
+                }
+                res.add(collab);
+            }
         }
         else if (sort.equals("less")){
+            collaborators.sort(Comparator.comparing(Collaborator::getEventsSize));
             int min = collaborators.get(0).getEventsSize();
-            for (Collaborator collab : collaborators)
-                if (collab.getEventsSize() < min)
-                    min = collab.getEventsSize();
-            for (Collaborator collab : collaborators)
-                if (collab.getEventsSize() == min)
-                    res.add(collab);
+            for (Collaborator collab : collaborators) {
+                if (collab.getEventsSize() != min) {
+                    break;
+                }
+                res.add(collab);
+            }
         }
         return res;
     }

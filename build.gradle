@@ -12,6 +12,12 @@ repositories {
 	mavenCentral()
 }
 
+bootJar {
+	launchScript()
+	archiveFileName = "salvar-mais-vidas.${archiveExtension.get()}"
+}
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'

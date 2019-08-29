@@ -7,13 +7,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PartnerServiceImpl implements PartnerService{
 
-    private final String PARTICULAR_PARTNER = "particular";
-    private final int SUB23_QUOTA = 12;
-    private final int PARTICULAR_QUOTA = 24;
-    private final int INSTITUTIONAL_QUOTA = 100;
+    private static final String PARTICULAR_PARTNER = "particular";
+    private static final int SUB23_QUOTA = 12;
+    private static final int PARTICULAR_QUOTA = 24;
+    private static final int INSTITUTIONAL_QUOTA = 100;
 
     private final PartnerRepository partnerRepository;
     private final CollaboratorService collaboratorService;
