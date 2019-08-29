@@ -26,11 +26,9 @@ public class CollaboratorServiceImpl implements CollaboratorService {
 
     @Override
     public Collaborator newCollaborator(Collaborator newCollaborator) {
-        if (collaboratorRepository.findByCc(newCollaborator.getCc()) != null ||
-            collaboratorRepository.findByEmail(newCollaborator.getEmail()) != null ||
-            collaboratorRepository.findByPhone(newCollaborator.getPhone()) != null){
+        if (collaboratorRepository.findByCc(newCollaborator.getCc()) != null || collaboratorRepository.findByEmail(newCollaborator.getEmail()) != null ||
+                collaboratorRepository.findByPhone(newCollaborator.getPhone()) != null)
             throw new DuplicateCollaboratorField();
-        }
         return collaboratorRepository.save(newCollaborator);
     }
 
@@ -55,15 +53,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
             collaborator.setRegistrationDate(newCollaborator.getRegistrationDate());
             collaborator.setEvents(newCollaborator.getEvents());
             return collaboratorRepository.save(collaborator);
-        }).orElseGet(() -> {
-            if (collaboratorRepository.findByCc(newCollaborator.getCc()) != null ||
-                    collaboratorRepository.findByEmail(newCollaborator.getEmail()) != null ||
-                    collaboratorRepository.findByPhone(newCollaborator.getPhone()) != null){
-                throw new DuplicateCollaboratorField();
-            }
-            newCollaborator.setId(id);
-            return collaboratorRepository.save(newCollaborator);
-        });
+        }).orElseThrow(() -> new CollaboratorNotFoundException(id));
     }
 
     @Override
