@@ -60,4 +60,9 @@ public class CollaboratorServiceImpl implements CollaboratorService {
     public void deleteCollaborator(int id) {
         collaboratorRepository.deleteById(id);
     }
+
+    @Override
+    public Collaborator findByCc(String cc){
+        return collaboratorRepository.findByCc(cc);
+    }
 }

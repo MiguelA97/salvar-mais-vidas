@@ -78,6 +78,10 @@ public class PartnerServiceImpl implements PartnerService{
                 throw new DuplicatePartnerField();
             }
 
+            /*saving old cc for collaborator update (in case the newPartner cc is different)*/
+            String oldCc = partner.getCc();
+
+            /*update partner*/
             partner.setName(newPartner.getName());
             partner.setCc(newPartner.getCc());
             partner.setJob(newPartner.getJob());
@@ -94,6 +98,24 @@ public class PartnerServiceImpl implements PartnerService{
             partner.setSub23(newPartner.isSub23());
             partner.setQuota(selectQuota(newPartner));
             partner.setStatus(newPartner.isStatus());
+
+            /*update collaborator*/
+            Collaborator collaborator = collaboratorService.findByCc(oldCc);
+            if (collaborator != null) {
+                collaborator.setBirthDate(newPartner.getBirthDate());
+                collaborator.setCc(newPartner.getCc());
+                collaborator.setJob(newPartner.getJob());
+                collaborator.setTrainer(newPartner.isTrainer());
+                collaborator.setName(newPartner.getName());
+                collaborator.setEmail(newPartner.getEmail());
+                collaborator.setAddress(newPartner.getAddress());
+                collaborator.setPostalCode(newPartner.getPostalCode());
+                collaborator.setLocality(newPartner.getLocality());
+                collaborator.setPhone(newPartner.getPhone());
+                collaborator.setRegistrationDate(newPartner.getRegistrationDate());
+                collaboratorService.replaceCollaborator(collaborator, collaborator.getId());
+            }
+
             return partnerRepository.save(partner);
         }).orElseThrow(() -> new PartnerNotFoundException(id));
     }

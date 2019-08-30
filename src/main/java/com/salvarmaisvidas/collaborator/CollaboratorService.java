@@ -36,4 +36,9 @@ public interface CollaboratorService {
      * Deletes the specified collaborator from the database
      */
     void deleteCollaborator(int id);
+
+    /**
+     * Finds and returns the collaborator with the specified cc.
+     */
+    Collaborator findByCc(String cc);
 }
