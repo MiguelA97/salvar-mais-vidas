@@ -47,17 +47,7 @@ public class PartnerServiceImpl implements PartnerService{
 
         if (newPartner.getPartnerType().equals(PARTICULAR_PARTNER) && newPartner.isCollaborator()) {
                 Collaborator collaborator = new Collaborator();
-                collaborator.setName(newPartner.getName());
-                collaborator.setEmail(newPartner.getEmail());
-                collaborator.setBirthDate(newPartner.getBirthDate());
-                collaborator.setCc(newPartner.getCc());
-                collaborator.setAddress(newPartner.getAddress());
-                collaborator.setPostalCode(newPartner.getPostalCode());
-                collaborator.setLocality(newPartner.getLocality());
-                collaborator.setPhone(newPartner.getPhone());
-                collaborator.setJob(newPartner.getJob());
-                collaborator.setTrainer(newPartner.isTrainer());
-                collaborator.setRegistrationDate(newPartner.getRegistrationDate());
+                setCollaboratorFields(collaborator, newPartner);
                 collaboratorService.newCollaborator(collaborator);
         }
         newPartner.setQuota(selectQuota(newPartner));
@@ -103,33 +93,13 @@ public class PartnerServiceImpl implements PartnerService{
             if (partner.isCollaborator()) {
                 /*update collaborator*/
                 if (collaborator != null) {
-                    collaborator.setBirthDate(newPartner.getBirthDate());
-                    collaborator.setCc(newPartner.getCc());
-                    collaborator.setJob(newPartner.getJob());
-                    collaborator.setTrainer(newPartner.isTrainer());
-                    collaborator.setName(newPartner.getName());
-                    collaborator.setEmail(newPartner.getEmail());
-                    collaborator.setAddress(newPartner.getAddress());
-                    collaborator.setPostalCode(newPartner.getPostalCode());
-                    collaborator.setLocality(newPartner.getLocality());
-                    collaborator.setPhone(newPartner.getPhone());
-                    collaborator.setRegistrationDate(newPartner.getRegistrationDate());
+                    setCollaboratorFields(collaborator, newPartner);
                     collaboratorService.replaceCollaborator(collaborator, collaborator.getId());
                 }
                 /*create collaborator*/
                 else{
                     Collaborator newCollaborator = new Collaborator();
-                    newCollaborator.setBirthDate(newPartner.getBirthDate());
-                    newCollaborator.setCc(newPartner.getCc());
-                    newCollaborator.setJob(newPartner.getJob());
-                    newCollaborator.setTrainer(newPartner.isTrainer());
-                    newCollaborator.setName(newPartner.getName());
-                    newCollaborator.setEmail(newPartner.getEmail());
-                    newCollaborator.setAddress(newPartner.getAddress());
-                    newCollaborator.setPostalCode(newPartner.getPostalCode());
-                    newCollaborator.setLocality(newPartner.getLocality());
-                    newCollaborator.setPhone(newPartner.getPhone());
-                    newCollaborator.setRegistrationDate(newPartner.getRegistrationDate());
+                    setCollaboratorFields(newCollaborator, newPartner);
                     collaboratorService.newCollaborator(newCollaborator);
                 }
             }
@@ -153,5 +123,19 @@ public class PartnerServiceImpl implements PartnerService{
             return PARTICULAR_QUOTA;
         else
             return INSTITUTIONAL_QUOTA;
+    }
+
+    private void setCollaboratorFields(Collaborator collaborator, Partner newPartner){
+        collaborator.setBirthDate(newPartner.getBirthDate());
+        collaborator.setCc(newPartner.getCc());
+        collaborator.setJob(newPartner.getJob());
+        collaborator.setTrainer(newPartner.isTrainer());
+        collaborator.setName(newPartner.getName());
+        collaborator.setEmail(newPartner.getEmail());
+        collaborator.setAddress(newPartner.getAddress());
+        collaborator.setPostalCode(newPartner.getPostalCode());
+        collaborator.setLocality(newPartner.getLocality());
+        collaborator.setPhone(newPartner.getPhone());
+        collaborator.setRegistrationDate(newPartner.getRegistrationDate());
     }
 }
