@@ -99,21 +99,42 @@ public class PartnerServiceImpl implements PartnerService{
             partner.setQuota(selectQuota(newPartner));
             partner.setStatus(newPartner.isStatus());
 
-            /*update collaborator*/
             Collaborator collaborator = collaboratorService.findByCc(oldCc);
-            if (collaborator != null) {
-                collaborator.setBirthDate(newPartner.getBirthDate());
-                collaborator.setCc(newPartner.getCc());
-                collaborator.setJob(newPartner.getJob());
-                collaborator.setTrainer(newPartner.isTrainer());
-                collaborator.setName(newPartner.getName());
-                collaborator.setEmail(newPartner.getEmail());
-                collaborator.setAddress(newPartner.getAddress());
-                collaborator.setPostalCode(newPartner.getPostalCode());
-                collaborator.setLocality(newPartner.getLocality());
-                collaborator.setPhone(newPartner.getPhone());
-                collaborator.setRegistrationDate(newPartner.getRegistrationDate());
-                collaboratorService.replaceCollaborator(collaborator, collaborator.getId());
+            if (partner.isCollaborator()) {
+                /*update collaborator*/
+                if (collaborator != null) {
+                    collaborator.setBirthDate(newPartner.getBirthDate());
+                    collaborator.setCc(newPartner.getCc());
+                    collaborator.setJob(newPartner.getJob());
+                    collaborator.setTrainer(newPartner.isTrainer());
+                    collaborator.setName(newPartner.getName());
+                    collaborator.setEmail(newPartner.getEmail());
+                    collaborator.setAddress(newPartner.getAddress());
+                    collaborator.setPostalCode(newPartner.getPostalCode());
+                    collaborator.setLocality(newPartner.getLocality());
+                    collaborator.setPhone(newPartner.getPhone());
+                    collaborator.setRegistrationDate(newPartner.getRegistrationDate());
+                    collaboratorService.replaceCollaborator(collaborator, collaborator.getId());
+                }
+                /*create collaborator*/
+                else{
+                    Collaborator newCollaborator = new Collaborator();
+                    newCollaborator.setBirthDate(newPartner.getBirthDate());
+                    newCollaborator.setCc(newPartner.getCc());
+                    newCollaborator.setJob(newPartner.getJob());
+                    newCollaborator.setTrainer(newPartner.isTrainer());
+                    newCollaborator.setName(newPartner.getName());
+                    newCollaborator.setEmail(newPartner.getEmail());
+                    newCollaborator.setAddress(newPartner.getAddress());
+                    newCollaborator.setPostalCode(newPartner.getPostalCode());
+                    newCollaborator.setLocality(newPartner.getLocality());
+                    newCollaborator.setPhone(newPartner.getPhone());
+                    newCollaborator.setRegistrationDate(newPartner.getRegistrationDate());
+                    collaboratorService.newCollaborator(newCollaborator);
+                }
+            }
+            else {
+                collaboratorService.deleteCollaborator(collaborator.getId());
             }
 
             return partnerRepository.save(partner);
