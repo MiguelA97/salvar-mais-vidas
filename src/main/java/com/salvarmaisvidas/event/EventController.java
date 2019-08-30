@@ -14,7 +14,7 @@ public class EventController {
     }
 
     @GetMapping
-    PageWrapper<Event> getAllEvents(@RequestParam(defaultValue = "15") int pageSize, @RequestParam(defaultValue = "0") int page, EventFilter filter, @RequestParam(defaultValue = "eventDate") String sort, @RequestParam(defaultValue = "DESC") String dir){
+    PageWrapper<Event> getAllEvents(@RequestParam(defaultValue = "15") int pageSize, @RequestParam(defaultValue = "0") int page, EventFilter filter, @RequestParam(defaultValue = "id") String sort, @RequestParam(defaultValue = "DESC") String dir){
         return new PageWrapper<>(eventService.getAllEvents(pageSize, page, filter, sort, dir));
     }
 

@@ -21,7 +21,7 @@ public class Partner {
     private LocalDate registrationDate;
     private String email;
     private String address;
-    private String postal_code;
+    private String postalCode;
     private String locality;
     private boolean trainer;
     private boolean collaborator;
@@ -114,11 +114,11 @@ public class Partner {
     }
 
     public String getPostalCode() {
-        return postal_code;
+        return postalCode;
     }
 
     public void setPostalCode(String postal_code) {
-        this.postal_code = postal_code;
+        this.postalCode = postal_code;
     }
 
     public String getLocality() {
