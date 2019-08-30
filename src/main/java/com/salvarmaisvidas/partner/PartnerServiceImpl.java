@@ -68,7 +68,7 @@ public class PartnerServiceImpl implements PartnerService{
     @Override
     public Partner replacePartner(Partner newPartner, int id) {
         return partnerRepository.findById(id).map(partner -> {
-            if (newPartner.getPartnerType().equals(PARTICULAR_PARTNER))
+            if (partner.getPartnerType().equals(PARTICULAR_PARTNER))
                 if (partnerRepository.findByCc(newPartner.getCc()) != null && !newPartner.getCc().equals(partner.getCc()))
                     throw new DuplicatePartnerField();
 
@@ -92,7 +92,6 @@ public class PartnerServiceImpl implements PartnerService{
             partner.setTrainer(newPartner.isTrainer());
             partner.setCollaborator(newPartner.isCollaborator());
             partner.setSub23(newPartner.isSub23());
-            partner.setPartnerType(newPartner.getPartnerType());
             partner.setQuota(selectQuota(newPartner));
             partner.setStatus(newPartner.isStatus());
             return partnerRepository.save(partner);

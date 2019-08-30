@@ -23,4 +23,9 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
         String message = messageSource.getMessage(ex.getErrorMessage(), ex.getExceptionId(), LocaleContextHolder.getLocale());
         return new ResponseEntity<>( Map.of("message",message), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value= { Exception.class})
+    protected ResponseEntity<Map<String, String>> handleConflict(Exception ex, WebRequest request) {
+        return new ResponseEntity<>( Map.of("message","Contact the application support"), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

@@ -5,6 +5,7 @@ build/
 !**/src/main/**
 !**/src/test/**
 
+
 ### STS ###
 .apt_generated
 .classpath
@@ -30,3 +31,10 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Angular Build
+public/
+*.js
+*.html
+*.css
+*.ico

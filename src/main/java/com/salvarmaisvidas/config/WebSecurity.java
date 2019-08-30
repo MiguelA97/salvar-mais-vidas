@@ -17,10 +17,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
-    private UserPrincipalDetailsService userPrincipalDetailsService;
+    private final UserPrincipalDetailsService userPrincipalDetailsService;
+    private final ErrorEntryPoint errorEntryPoint;
 
-    public WebSecurity(UserPrincipalDetailsService userPrincipalDetailsService) {
+    public WebSecurity(UserPrincipalDetailsService userPrincipalDetailsService, ErrorEntryPoint errorEntryPoint) {
         this.userPrincipalDetailsService = userPrincipalDetailsService;
+        this.errorEntryPoint = errorEntryPoint;
     }
 
     @Override
@@ -41,11 +43,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 //.authenticated()
                 //.and()
                // .httpBasic();
-        http.requestMatcher(
+        http.csrf().disable().requestMatcher(
                 i -> !i.getRequestURI().substring(i.getContextPath().length()).startsWith("/api"))
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(errorEntryPoint)
                 .and()
                 .httpBasic();
     }
