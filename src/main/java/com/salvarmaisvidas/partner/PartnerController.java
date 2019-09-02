@@ -26,7 +26,7 @@ public class PartnerController {
     }
 
     @PostMapping
-    Partner newPartner(@RequestBody  @Valid Partner newPartner){
+    Partner newPartner(@RequestBody Partner newPartner){
         return partnerService.newPartner(newPartner);
     }
 
