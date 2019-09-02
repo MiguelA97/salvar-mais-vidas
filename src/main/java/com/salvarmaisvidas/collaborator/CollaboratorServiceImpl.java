@@ -2,6 +2,7 @@ package com.salvarmaisvidas.collaborator;
 
 import com.salvarmaisvidas.partner.Partner;
 import com.salvarmaisvidas.partner.PartnerService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -13,7 +14,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
     private final CollaboratorRepository collaboratorRepository;
     private final PartnerService partnerService;
 
-    public CollaboratorServiceImpl(CollaboratorRepository collaboratorRepository, PartnerService partnerService) {
+    public CollaboratorServiceImpl(CollaboratorRepository collaboratorRepository, @Lazy PartnerService partnerService) {
         this.collaboratorRepository = collaboratorRepository;
         this.partnerService = partnerService;
     }
