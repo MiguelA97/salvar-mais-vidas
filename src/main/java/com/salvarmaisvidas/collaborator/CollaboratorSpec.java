@@ -16,6 +16,18 @@ public class CollaboratorSpec {
             @Override
             public Predicate toPredicate(Root<Collaborator> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicates = new ArrayList<>();
+                List<Predicate> orPredicates = new ArrayList<>();
+
+                String search = filter.getSearch();
+
+                if(search != null && !search.isEmpty()){
+                    String like = "%" + search + "%";
+                    orPredicates.add(cb.like(root.get("name"), like));
+                    orPredicates.add(cb.like(root.get("cc"), like));
+                    //SO PODEM SER CAMPOS DO TIPO STRING SENAO DA ERRO!
+
+                    predicates.add(cb.or(orPredicates.toArray(new Predicate[0])));
+                }
 
                 if(filter.getCc() != null){
                     predicates.add(cb.equal(root.get("cc"), filter.getCc()));

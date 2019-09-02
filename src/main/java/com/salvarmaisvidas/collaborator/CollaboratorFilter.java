@@ -10,6 +10,7 @@ public class CollaboratorFilter {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate registrationDate;
     private Boolean trainer;
+    private String search;
 
     public CollaboratorFilter() {
     }
@@ -44,5 +45,13 @@ public class CollaboratorFilter {
 
     public void setTrainer(Boolean trainer) {
         this.trainer = trainer;
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 }
