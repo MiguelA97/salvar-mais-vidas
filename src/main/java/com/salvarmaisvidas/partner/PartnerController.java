@@ -3,8 +3,6 @@ package com.salvarmaisvidas.partner;
 import com.salvarmaisvidas.util.PageWrapper;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping("/api/partners")
 public class PartnerController {
