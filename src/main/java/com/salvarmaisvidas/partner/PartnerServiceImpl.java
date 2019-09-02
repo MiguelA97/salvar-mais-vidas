@@ -138,4 +138,9 @@ public class PartnerServiceImpl implements PartnerService{
         collaborator.setPhone(newPartner.getPhone());
         collaborator.setRegistrationDate(newPartner.getRegistrationDate());
     }
+
+    @Override
+    public Partner findByCc(String cc){
+        return partnerRepository.findByCc(cc);
+    }
 }

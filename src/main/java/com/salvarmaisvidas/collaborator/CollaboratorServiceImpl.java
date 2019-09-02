@@ -1,5 +1,7 @@
 package com.salvarmaisvidas.collaborator;
 
+import com.salvarmaisvidas.partner.Partner;
+import com.salvarmaisvidas.partner.PartnerService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Service;
 public class CollaboratorServiceImpl implements CollaboratorService {
 
     private final CollaboratorRepository collaboratorRepository;
+    private final PartnerService partnerService;
 
-    public CollaboratorServiceImpl(CollaboratorRepository collaboratorRepository) {
+    public CollaboratorServiceImpl(CollaboratorRepository collaboratorRepository, PartnerService partnerService) {
         this.collaboratorRepository = collaboratorRepository;
+        this.partnerService = partnerService;
     }
 
     @Override
@@ -40,6 +44,9 @@ public class CollaboratorServiceImpl implements CollaboratorService {
                 collaboratorRepository.findByPhone(newCollaborator.getPhone()) != null && newCollaborator.getPhone() != collaborator.getPhone()){
                 throw new DuplicateCollaboratorField();
             }
+
+            String oldCc = collaborator.getCc();
+
             collaborator.setBirthDate(newCollaborator.getBirthDate());
             collaborator.setCc(newCollaborator.getCc());
             collaborator.setJob(newCollaborator.getJob());
@@ -52,6 +59,24 @@ public class CollaboratorServiceImpl implements CollaboratorService {
             collaborator.setPhone(newCollaborator.getPhone());
             collaborator.setRegistrationDate(newCollaborator.getRegistrationDate());
             collaborator.setEvents(newCollaborator.getEvents());
+
+            /*update partner if it exists*/
+            Partner partner = partnerService.findByCc(oldCc);
+            if (partner != null){
+                partner.setBirthDate(newCollaborator.getBirthDate());
+                partner.setCc(newCollaborator.getCc());
+                partner.setJob(newCollaborator.getJob());
+                partner.setTrainer(newCollaborator.isTrainer());
+                partner.setName(newCollaborator.getName());
+                partner.setEmail(newCollaborator.getEmail());
+                partner.setAddress(newCollaborator.getAddress());
+                partner.setPostalCode(newCollaborator.getPostalCode());
+                partner.setLocality(newCollaborator.getLocality());
+                partner.setPhone(newCollaborator.getPhone());
+                partner.setRegistrationDate(newCollaborator.getRegistrationDate());
+                partnerService.replacePartner(partner, partner.getId());
+            }
+
             return collaboratorRepository.save(collaborator);
         }).orElseThrow(() -> new CollaboratorNotFoundException(id));
     }

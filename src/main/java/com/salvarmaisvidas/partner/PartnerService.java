@@ -36,4 +36,9 @@ public interface PartnerService {
      * Deletes the specified Partner from the database
      */
     void deletePartner(int id);
+
+    /**
+     * Finds and returns the partner with the specified cc.
+     */
+    Partner findByCc(String cc);
 }
