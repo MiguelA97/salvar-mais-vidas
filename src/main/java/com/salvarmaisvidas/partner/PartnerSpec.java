@@ -24,7 +24,12 @@ public class PartnerSpec {
                     String like = "%" + search + "%";
                     orPredicates.add(cb.like(root.get("name"), like));
                     orPredicates.add(cb.like(root.get("cc"), like));
-                    //TODO FALTA ADICIONAR OS OUTROS CAMPOS COM O LIKE!
+                    orPredicates.add(cb.like(root.get("nif"), like));
+                    orPredicates.add(cb.like(root.get("trainer"), like));
+                    orPredicates.add(cb.like(root.get("status"), like));
+                    orPredicates.add(cb.like(root.get("partnerType"), like));
+                    orPredicates.add(cb.like(root.get("collaborator"), like));
+                    orPredicates.add(cb.like(root.get("sub23"), like));
 
                     predicates.add(cb.or(orPredicates.toArray(new Predicate[0])));
                 }
