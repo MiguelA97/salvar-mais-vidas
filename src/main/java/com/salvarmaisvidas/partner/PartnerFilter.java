@@ -9,6 +9,7 @@ public class PartnerFilter {
     private String partnerType;
     private Boolean collaborator;
     private Boolean sub23;
+    private String search;
 
     public PartnerFilter() {
     }
@@ -75,5 +76,13 @@ public class PartnerFilter {
 
     public void setSub23(Boolean sub23) {
         this.sub23 = sub23;
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 }

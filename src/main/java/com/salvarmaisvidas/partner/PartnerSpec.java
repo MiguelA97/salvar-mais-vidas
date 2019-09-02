@@ -16,7 +16,18 @@ public class PartnerSpec {
             @Override
             public Predicate toPredicate(Root<Partner> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicates = new ArrayList<>();
+                List<Predicate> orPredicates = new ArrayList<>();
 
+                String search = filter.getSearch();
+
+                if(search != null && !search.isEmpty()){
+                    String like = "%" + search + "%";
+                    orPredicates.add(cb.like(root.get("name"), like));
+                    orPredicates.add(cb.like(root.get("cc"), like));
+                    //TODO FALTA ADICIONAR OS OUTROS CAMPOS COM O LIKE!
+
+                    predicates.add(cb.or(orPredicates.toArray(new Predicate[0])));
+                }
                 if (filter.getName() != null){
                     String like = "%" + filter.getName() + "%";
                     predicates.add(cb.like(root.get("name"), like));
