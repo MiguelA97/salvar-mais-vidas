@@ -30,7 +30,7 @@ public interface PartnerService {
      *
      * @return replaced Partner
      */
-    Partner replacePartner(Partner newPartner, int id);
+    Partner replacePartner(Partner newPartner, int id, boolean internal);
 
     /**
      * Deletes the specified Partner from the database

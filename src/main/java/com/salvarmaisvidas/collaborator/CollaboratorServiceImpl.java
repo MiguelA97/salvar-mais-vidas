@@ -39,7 +39,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
     }
 
     @Override
-    public Collaborator replaceCollaborator(Collaborator newCollaborator, int id) {
+    public Collaborator replaceCollaborator(Collaborator newCollaborator, int id, boolean internal) {
         return collaboratorRepository.findById(id).map(collaborator -> {
             if (collaboratorRepository.findByCc(newCollaborator.getCc()) != null && !newCollaborator.getCc().equals(collaborator.getCc()) ||
                 collaboratorRepository.findByEmail(newCollaborator.getEmail()) != null && !newCollaborator.getEmail().equals(collaborator.getEmail()) ||
@@ -76,6 +76,9 @@ public class CollaboratorServiceImpl implements CollaboratorService {
                 partner.setLocality(newCollaborator.getLocality());
                 partner.setPhone(newCollaborator.getPhone());
                 partner.setRegistrationDate(newCollaborator.getRegistrationDate());
+                if (!internal) {
+                    partnerService.replacePartner(partner, partner.getId(), true);
+                }
                 //TODO FALTA DAR UPDATE AO PARTNER, MAS COMO?!
             }
 

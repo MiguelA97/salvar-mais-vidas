@@ -30,7 +30,7 @@ public interface CollaboratorService {
      *
      * @return replaced collaborator
      */
-    Collaborator replaceCollaborator(Collaborator newCollaborator, int id);
+    Collaborator replaceCollaborator(Collaborator newCollaborator, int id, boolean internal);
 
     /**
      * Deletes the specified collaborator from the database

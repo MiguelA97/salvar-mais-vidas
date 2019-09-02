@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class PartnerServiceImpl implements PartnerService{
     }
 
     @Override
-    public Partner replacePartner(Partner newPartner, int id) {
+    public Partner replacePartner(Partner newPartner, int id, boolean internal) {
         return partnerRepository.findById(id).map(partner -> {
             if (partner.getPartnerType().equals(PARTICULAR_PARTNER))
                 if (partnerRepository.findByCc(newPartner.getCc()) != null && !newPartner.getCc().equals(partner.getCc()))
@@ -94,7 +95,9 @@ public class PartnerServiceImpl implements PartnerService{
                 /*update collaborator*/
                 if (collaborator != null) {
                     setCollaboratorFields(collaborator, newPartner);
-                    collaboratorService.replaceCollaborator(collaborator, collaborator.getId());
+                    if(!internal) {
+                        collaboratorService.replaceCollaborator(collaborator, collaborator.getId(), true);
+                    }
                 }
                 /*create collaborator*/
                 else{

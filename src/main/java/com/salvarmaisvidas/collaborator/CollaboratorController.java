@@ -38,7 +38,7 @@ public class CollaboratorController {
 
     @PutMapping("/{id}")
     Collaborator replaceCollaborator(@RequestBody Collaborator newCollaborator, @PathVariable int id){
-        return collaboratorService.replaceCollaborator(newCollaborator, id);
+        return collaboratorService.replaceCollaborator(newCollaborator, id, false);
     }
 
     @DeleteMapping("/{id}")

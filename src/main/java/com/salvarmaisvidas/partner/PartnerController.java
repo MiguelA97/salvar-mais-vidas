@@ -32,7 +32,7 @@ public class PartnerController {
 
     @PutMapping("/{id}")
     Partner replacePartner(@RequestBody Partner newPartner, @PathVariable int id){
-        return partnerService.replacePartner(newPartner, id);
+        return partnerService.replacePartner(newPartner, id, false);
     }
 
     @DeleteMapping("/{id}")
