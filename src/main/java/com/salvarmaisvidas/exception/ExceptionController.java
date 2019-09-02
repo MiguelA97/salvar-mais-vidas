@@ -1,5 +1,7 @@
 package com.salvarmaisvidas.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -15,6 +17,8 @@ import java.util.Map;
 @ControllerAdvice
 public class ExceptionController extends ResponseEntityExceptionHandler {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ExceptionController.class);
+
     @Autowired
     private MessageSource messageSource;
 
@@ -26,6 +30,7 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value= { Exception.class})
     protected ResponseEntity<Map<String, String>> handleConflict(Exception ex, WebRequest request) {
+        LOG.error("Unexpected Error", ex);
         return new ResponseEntity<>( Map.of("message","Contact the application support"), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

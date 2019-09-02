@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -26,6 +27,7 @@ public class Partner {
     private boolean trainer;
     private boolean collaborator;
     private boolean sub23;
+    @NotNull
     private String partnerType;
     private int quota;
     private boolean status;

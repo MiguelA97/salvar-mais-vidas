@@ -1,6 +1,7 @@
 package com.salvarmaisvidas.collaborator;
 
 import com.salvarmaisvidas.partner.Partner;
+import com.salvarmaisvidas.partner.PartnerController;
 import com.salvarmaisvidas.partner.PartnerService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
@@ -75,7 +76,7 @@ public class CollaboratorServiceImpl implements CollaboratorService {
                 partner.setLocality(newCollaborator.getLocality());
                 partner.setPhone(newCollaborator.getPhone());
                 partner.setRegistrationDate(newCollaborator.getRegistrationDate());
-                partnerService.replacePartner(partner, partner.getId());
+                //TODO FALTA DAR UPDATE AO PARTNER, MAS COMO?!
             }
 
             return collaboratorRepository.save(collaborator);

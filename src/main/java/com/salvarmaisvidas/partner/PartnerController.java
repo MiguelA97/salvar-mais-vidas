@@ -3,6 +3,8 @@ package com.salvarmaisvidas.partner;
 import com.salvarmaisvidas.util.PageWrapper;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/partners")
 public class PartnerController {
@@ -24,7 +26,7 @@ public class PartnerController {
     }
 
     @PostMapping
-    Partner newPartner(@RequestBody Partner newPartner){
+    Partner newPartner(@RequestBody  @Valid Partner newPartner){
         return partnerService.newPartner(newPartner);
     }
 

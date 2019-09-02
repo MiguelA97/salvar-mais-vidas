@@ -46,9 +46,9 @@ public class PartnerServiceImpl implements PartnerService{
             throw new DuplicatePartnerField();
 
         if (newPartner.getPartnerType().equals(PARTICULAR_PARTNER) && newPartner.isCollaborator()) {
-                Collaborator collaborator = new Collaborator();
-                setCollaboratorFields(collaborator, newPartner);
-                collaboratorService.newCollaborator(collaborator);
+            Collaborator collaborator = new Collaborator();
+            setCollaboratorFields(collaborator, newPartner);
+            collaboratorService.newCollaborator(collaborator);
         }
         newPartner.setQuota(selectQuota(newPartner));
 
@@ -86,7 +86,7 @@ public class PartnerServiceImpl implements PartnerService{
             partner.setTrainer(newPartner.isTrainer());
             partner.setCollaborator(newPartner.isCollaborator());
             partner.setSub23(newPartner.isSub23());
-            partner.setQuota(selectQuota(newPartner));
+            partner.setQuota(selectQuota(partner));
             partner.setStatus(newPartner.isStatus());
 
             Collaborator collaborator = collaboratorService.findByCc(oldCc);
@@ -104,7 +104,9 @@ public class PartnerServiceImpl implements PartnerService{
                 }
             }
             else {
-                collaboratorService.deleteCollaborator(collaborator.getId());
+                if (collaborator != null) {
+                    collaboratorService.deleteCollaborator(collaborator.getId());
+                }
             }
 
             return partnerRepository.save(partner);
@@ -116,10 +118,10 @@ public class PartnerServiceImpl implements PartnerService{
         partnerRepository.deleteById(id);
     }
 
-    private int selectQuota(Partner newPartner){
-        if (newPartner.isSub23())
+    private int selectQuota(Partner partner){
+        if (partner.isSub23())
            return SUB23_QUOTA;
-        else if (newPartner.getPartnerType().equals(PARTICULAR_PARTNER))
+        else if (partner.getPartnerType().equals(PARTICULAR_PARTNER))
             return PARTICULAR_QUOTA;
         else
             return INSTITUTIONAL_QUOTA;
